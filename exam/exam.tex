@@ -1,0 +1,72 @@
+% !TEX program = xelatex
+\documentclass[a4paper]{article}
+\usepackage[margin=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage[table]{xcolor}
+\usepackage{unicode-math}
+\usepackage{amsmath}
+\usepackage[linesnumbered,ruled]{algorithm2e}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{indentfirst}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+
+\usepackage{fontspec}
+
+\setmainfont{Merriweather}
+\setmathfont{STIX Two Math}[Scale=MatchLowercase]
+\setmonofont{Consolas}[Scale=MatchLowercase]
+\setlist[itemize]{noitemsep, topsep=0.5em}
+\geometry{
+	left = 25mm,
+	right = 15mm,
+	top = 20mm,
+    bottom = 20mm,
+    includeheadfoot=true
+}
+\fancypagestyle{style}{
+    \fancyhf{}
+    \fancyfoot[C]{\textit{\ssp Cán bộ coi thi không giải thích gì thêm}}
+    \renewcommand{\headrulewidth}{0pt}  
+    \renewcommand{\footrulewidth}{0pt}}
+\pagestyle{style}
+\newfontfamily\ssp{Source Serif Pro}
+
+\begin{document}
+{\ssp \begin{center}
+    \begin{tabular}{p{0.25\linewidth} p{0.6\linewidth}}
+        \begin{center}
+            \includegraphics[height = 1.2cm]{hutech.png} \newline
+            \textbf{KHOA HỆ THỐNG THÔNG TIN QUẢN LÝ}
+        \end{center}
+        &
+        \begin{center}
+            \begin{tabular}[t]{l l}
+                \textbf{ĐỀ THI:} &\textbf{HỌC KỲ 2B LẦN 1 NĂM HỌC 2020-2021} \\
+                Ngành/Lớp: &HỆ THỐNG THÔNG TIN QUẢN LÝ \\
+                Tên học phần: &TƯ DUY TÍNH TOÁN \\
+                Mã học phần: &MAT208 \hspace{2em} Số tín chỉ: 03 \\
+                Thời gian làm bài: &90 phút \\
+                Mã đề (nếu có): & 01 \\
+                \multicolumn{2}{l}{\textbf{SỬ DỤNG TÀI LIỆU:\hspace{1em} CÓ ✓\hspace{1em} KHÔNG ☐}}\\
+            \end{tabular}
+        \end{center}
+        \\
+        \hline
+    \end{tabular}
+\end{center}
+}
+Có 3 cách thường dùng để biểu diễn thuật toán, đó là: dùng ngôn ngữ tự nhiên, dùng lưu đồ và dùng mã giả.
+    Trong đó, cách dùng mã giả là phổ biến nhất.
+
+    Mã giả là cách biểu diễn thuật toán bằng cách kết hợp ngôn ngữ tự nhiên và các cấu trúc lập trình (cấu trúc rẽ nhánh, cấu trúc lặp).
+    Mã giả không có tiêu chuẩn chung, nhưng khi viết phải thể hiện được đầy đủ, rõ ràng thuật toán.
+
+    Khi viết mã giả, người ta có thể mượn từ khóa của một ngôn ngữ lập trình nào đó để thể hiện cấu trúc lập trình.
+    Trong tài liệu này, các thuật toán sẽ được biểu diễn dưới dạng mã giả theo phong cách python như ví dụ dưới đây.
+\end{document}
