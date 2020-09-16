@@ -1,0 +1,82 @@
+% !TEX program = xelatex
+\LoadClass[11pt]{article}
+\RequirePackage{geometry}
+\RequirePackage{unicode-math}
+\RequirePackage{enumitem}
+\RequirePackage{fontspec}
+\RequirePackage{fancyhdr}
+\RequirePackage{graphicx}
+\RequirePackage{indentfirst}
+\RequirePackage{setspace}
+
+\setmainfont{Source Serif Pro}
+\setmathfont{STIX Two Math}[Scale=MatchLowercase]
+\setmonofont{Consolas}[Scale=MatchLowercase]
+%\setlist[itemize]{noitemsep, topsep=0.5em}
+\geometry{
+    a4paper,
+	left = 10mm,
+	right = 10mm,
+	top = 10mm,
+    bottom = 10mm,
+    includefoot=true
+}
+\fancypagestyle{style}{
+    \fancyhf{}
+    \fancyfoot[C]{\textit{Cán bộ coi thi không giải thích gì thêm}}
+    \renewcommand{\headrulewidth}{0pt}  
+    \renewcommand{\footrulewidth}{0pt}}
+\pagestyle{style}
+
+\makeatletter
+\newcommand*{\@exam}{}%
+\newcommand*{\@faculty}{\textbf{{KHOA HỆ THỐNG THÔNG TIN QUẢN LÝ}}}%
+\newcommand*{\@course}{}%
+\newcommand*{\@code}{}%
+\newcommand*{\@credit}{\textbf{03}}%
+\newcommand*{\@examtime}{90 phút}%
+\newcommand*{\@examcode}{\textbf{01}}%
+\newcommand*{\@examdoc}{CÓ ✓\hspace{1em} KHÔNG ☐}
+
+\newcommand{\exam}[3]{\renewcommand{\@exam}{\textbf{HỌC KỲ {#1} LẦN {#2} NĂM HỌC {#3}}}}%
+\newcommand{\faculty}[1]{\renewcommand{\@faculty}{#1}}%
+\newcommand{\course}[1]{\renewcommand{\@course}{\textbf{#1}}}%
+\newcommand{\code}[1]{\renewcommand{\@code}{\textbf{#1}}}%
+\newcommand{\credit}[1]{\renewcommand{\@creadit}{\textbf{#1}}}%
+\newcommand{\examtime}[1]{\renewcommand{\@examtime}{#1}}%
+\newcommand{\examcode}[1]{\renewcommand{\@examcode}{\textbf{#1}}}%
+\newcommand{\noexamdoc}{\renewcommand{\@examdoc}{CÓ ☐\hspace{1em} KHÔNG ✓}}%
+
+\newcommand*{\examhead}{
+    \begin{center}
+        \begin{tabular}{p{0.25\linewidth} p{0.6\linewidth}}
+            \begin{center}
+                \includegraphics[height = 1.2cm]{hutech.png} \newline
+                \@faculty
+            \end{center}
+            &
+            \begin{center}
+                \begin{tabular}[t]{l l}
+                    \textbf{ĐỀ THI:} &\@exam \\
+                    Ngành/Lớp: &\@faculty \\
+                    Tên học phần: &\@course \\
+                    Mã học phần: &\@code \hspace{2em} Số tín chỉ: \@credit \\
+                    Thời gian làm bài: &\@examtime \\
+                    Mã đề (nếu có): & 01 \\
+                    \multicolumn{2}{l}{\textbf{SỬ DỤNG TÀI LIỆU: \hspace{1em} \@examdoc}}\\
+                \end{tabular}
+            \end{center}
+            \\
+            \hline
+        \end{tabular}
+    \end{center}
+}
+\makeatother
+
+\newcounter{question}
+\newenvironment{question}[1]{
+    \stepcounter{question}\textbf{Câu \thequestion (#1 điểm).}
+    \ \ignorespaces
+}{}
+
+\onehalfspacing
