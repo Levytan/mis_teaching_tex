@@ -15,17 +15,17 @@
 %\setlist[itemize]{noitemsep, topsep=0.5em}
 \geometry{
     a4paper,
-	left = 10mm,
-	right = 10mm,
-	top = 10mm,
-    bottom = 10mm,
+    left=15mm,
+    right=10mm,
+    top=15mm,
+    bottom=15mm,
     includefoot=true
 }
 \fancypagestyle{style}{
     \fancyhf{}
     \fancyfoot[C]{\textit{Cán bộ coi thi không giải thích gì thêm}}
     \renewcommand{\headrulewidth}{0pt}  
-    \renewcommand{\footrulewidth}{0pt}}
+    \renewcommand{\footrulewidth}{1pt}}
 \pagestyle{style}
 
 \makeatletter
@@ -37,6 +37,7 @@
 \newcommand*{\@examtime}{90}%
 \newcommand*{\@examcode}{\textbf{01}}%
 \newcommand*{\@examdoc}{CÓ ✓\hspace{1em} KHÔNG ☐}
+\newcommand*{\@exampage}{}
 
 \newcommand{\exam}[3]{\renewcommand{\@exam}{\textbf{HỌC KỲ {#1} LẦN {#2} NĂM HỌC {#3}}}}%
 \newcommand{\faculty}[1]{\renewcommand{\@faculty}{#1}}%
@@ -46,13 +47,15 @@
 \newcommand{\examtime}[1]{\renewcommand{\@examtime}{#1}}%
 \newcommand{\examcode}[1]{\renewcommand{\@examcode}{\textbf{#1}}}%
 \newcommand{\noexamdoc}{\renewcommand{\@examdoc}{CÓ ☐\hspace{1em} KHÔNG ✓}}%
+\newcommand{\exampage}[1]{\renewcommand{\@exampage}{\textit{(Đề thi có {#1} trang)}}}%
 
 \newcommand*{\examhead}{
     \begin{center}
         \begin{tabular}{p{0.25\linewidth} p{0.6\linewidth}}
             \begin{center}
-                \includegraphics[height = 1.2cm]{hutech.png} \newline
-                \@faculty
+                \includegraphics[height=1.2cm]{hutech.png} \\
+                \@faculty \\
+                \@exampage
             \end{center}
             &
             \begin{center}
@@ -70,6 +73,7 @@
             \hline
         \end{tabular}
     \end{center}
+    \vspace{0.5em}
 }
 \makeatother
 
