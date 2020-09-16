@@ -34,7 +34,7 @@
 \newcommand*{\@course}{}%
 \newcommand*{\@code}{}%
 \newcommand*{\@credit}{\textbf{03}}%
-\newcommand*{\@examtime}{90 phút}%
+\newcommand*{\@examtime}{90}%
 \newcommand*{\@examcode}{\textbf{01}}%
 \newcommand*{\@examdoc}{CÓ ✓\hspace{1em} KHÔNG ☐}
 
@@ -61,8 +61,8 @@
                     Ngành/Lớp: &\@faculty \\
                     Tên học phần: &\@course \\
                     Mã học phần: &\@code \hspace{2em} Số tín chỉ: \@credit \\
-                    Thời gian làm bài: &\@examtime \\
-                    Mã đề (nếu có): & 01 \\
+                    Thời gian làm bài: &\@examtime phút \\
+                    Mã đề (nếu có): &\@examcode \\
                     \multicolumn{2}{l}{\textbf{SỬ DỤNG TÀI LIỆU: \hspace{1em} \@examdoc}}\\
                 \end{tabular}
             \end{center}
@@ -75,8 +75,8 @@
 
 \newcounter{question}
 \newenvironment{question}[1]{
-    \stepcounter{question}\textbf{Câu \thequestion (#1 điểm).}
+    \stepcounter{question}\textbf{Câu \thequestion\ (#1 điểm).}
     \ \ignorespaces
-}{}
+}{\vspace{0.5em}}
 
 \onehalfspacing
