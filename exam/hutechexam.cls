@@ -2,10 +2,11 @@
 \LoadClass[11pt]{article}
 \RequirePackage{geometry}
 \RequirePackage{unicode-math}
-\RequirePackage{enumitem}
+\RequirePackage{etoolbox}
 \RequirePackage{fontspec}
 \RequirePackage{fancyhdr}
 \RequirePackage{graphicx}
+\RequirePackage{hyperref}
 \RequirePackage{indentfirst}
 \RequirePackage{setspace}
 
@@ -36,8 +37,7 @@
 \newcommand*{\@credit}{\textbf{03}}%
 \newcommand*{\@examtime}{90}%
 \newcommand*{\@examcode}{\textbf{01}}%
-\newcommand*{\@examdoc}{CÓ ✓\hspace{1em} KHÔNG ☐}
-\newcommand*{\@exampage}{}
+\newcommand*{\@examdoc}{CÓ ✓\hspace{1em} KHÔNG ☐}%
 
 \newcommand{\exam}[3]{\renewcommand{\@exam}{\textbf{HỌC KỲ {#1} LẦN {#2} NĂM HỌC {#3}}}}%
 \newcommand{\faculty}[1]{\renewcommand{\@faculty}{#1}}%
@@ -47,7 +47,6 @@
 \newcommand{\examtime}[1]{\renewcommand{\@examtime}{#1}}%
 \newcommand{\examcode}[1]{\renewcommand{\@examcode}{\textbf{#1}}}%
 \newcommand{\noexamdoc}{\renewcommand{\@examdoc}{CÓ ☐\hspace{1em} KHÔNG ✓}}%
-\newcommand{\exampage}[1]{\renewcommand{\@exampage}{\textit{(Đề thi có {#1} trang)}}}%
 
 \newcommand*{\examhead}{
     \begin{center}
@@ -55,7 +54,7 @@
             \begin{center}
                 \includegraphics[height=1.2cm]{hutech.png} \\
                 \@faculty \\
-                \@exampage
+                \textit{(Đề thi có \pageref*{LastPage}\ trang)}
             \end{center}
             &
             \begin{center}
@@ -64,7 +63,7 @@
                     Ngành/Lớp: &\@faculty \\
                     Tên học phần: &\@course \\
                     Mã học phần: &\@code \hspace{2em} Số tín chỉ: \@credit \\
-                    Thời gian làm bài: &\@examtime phút \\
+                    Thời gian làm bài: &\@examtime\ phút \\
                     Mã đề (nếu có): &\@examcode \\
                     \multicolumn{2}{l}{\textbf{SỬ DỤNG TÀI LIỆU: \hspace{1em} \@examdoc}}\\
                 \end{tabular}
