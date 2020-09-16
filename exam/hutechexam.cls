@@ -25,6 +25,7 @@
 \fancypagestyle{style}{
     \fancyhf{}
     \fancyfoot[C]{\textit{Cán bộ coi thi không giải thích gì thêm}}
+    \fancyfoot[R]{Trang \thepage/\pageref*{LastPage}}
     \renewcommand{\headrulewidth}{0pt}  
     \renewcommand{\footrulewidth}{1pt}}
 \pagestyle{style}
@@ -50,9 +51,9 @@
 
 \newcommand*{\examhead}{
     \begin{center}
-        \begin{tabular}{p{0.25\linewidth} p{0.6\linewidth}}
+        \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}p{0.3\linewidth} p{0.7\linewidth}}
             \begin{center}
-                \includegraphics[height=1.2cm]{hutech.png} \\
+                \includegraphics[height=1.5cm]{hutech.png} \\
                 \@faculty \\
                 \textit{(Đề thi có \pageref*{LastPage}\ trang)}
             \end{center}
@@ -62,7 +63,7 @@
                     \textbf{ĐỀ THI:} &\@exam \\
                     Ngành/Lớp: &\@faculty \\
                     Tên học phần: &\@course \\
-                    Mã học phần: &\@code \hspace{2em} Số tín chỉ: \@credit \\
+                    Mã học phần: &\@code \hspace{4em} Số tín chỉ: \@credit \\
                     Thời gian làm bài: &\@examtime\ phút \\
                     Mã đề (nếu có): &\@examcode \\
                     \multicolumn{2}{l}{\textbf{SỬ DỤNG TÀI LIỆU: \hspace{1em} \@examdoc}}\\
@@ -70,7 +71,7 @@
             \end{center}
             \\
             \hline
-        \end{tabular}
+        \end{tabular*}
     \end{center}
     \vspace{0.5em}
 }
