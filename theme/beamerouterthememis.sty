@@ -1,22 +1,119 @@
-\mode<presentation>
-
-% Frame title
-\defbeamertemplate*{frametitle}{texsx}[1][]
-{
-\vskip1cm%
-  \begin{beamercolorbox}[wd=\paperwidth,ht=1.2cm]{frametitle} 
-  \begin{tikzpicture}
-  \useasboundingbox[fill=white](0,0) rectangle(\the\paperwidth,1.2);
-  \fill[orange] (0,0) rectangle(2.95,1.2);
-  \fill[blue!50!cyan!80] (3.05,0) rectangle(\the\paperwidth,1.2);
-   \ifx\insertframesubtitle\@empty%
-      {\node[anchor=west, white,font=\large] at (3.2,0.61){\insertframetitle};}
-      \else%
-      {\node[anchor= west, white,font=\large] at (3.2,0.81){\insertframetitle};%
-       \node[anchor= west, white,font=\small] at (3.2,0.41){\insertframesubtitle};}%
-      \fi
-  \end{tikzpicture}
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerouterthememis}[2020/09/23 MIS outer theme]
+\RequirePackage{etoolbox}
+\RequirePackage{calc}
+\RequirePackage{pgfopts}
+\pgfkeys{
+  /mis/outer/numbering/.cd,
+    .is choice,
+    none/.code=\setbeamertemplate{frame numbering}[none],
+    counter/.code=\setbeamertemplate{frame numbering}[counter],
+    fraction/.code=\setbeamertemplate{frame numbering}[fraction],
+}
+\pgfkeys{
+  /mis/outer/progressbar/.cd,
+    .is choice,
+    none/.code={%
+      \setbeamertemplate{headline}[plain]
+      \setbeamertemplate{frametitle}[plain]
+      \setbeamertemplate{footline}[plain]
+    },
+    head/.code={\pgfkeys{/mis/outer/progressbar=none}
+      \addtobeamertemplate{headline}{}{%
+        \usebeamertemplate*{progress bar in head/foot}
+      }
+    },
+    frametitle/.code={\pgfkeys{/mis/outer/progressbar=none}
+      \addtobeamertemplate{frametitle}{}{%
+        \usebeamertemplate*{progress bar in head/foot}
+      }
+    },
+    foot/.code={\pgfkeys{/mis/outer/progressbar=none}
+      \addtobeamertemplate{footline}{}{%
+        \usebeamertemplate*{progress bar in head/foot}%
+      }
+    },
+}
+\newcommand{\mis@outer@setdefaults}{
+  \pgfkeys{/mis/outer/.cd,
+    numbering=counter,
+    progressbar=none,
+  }
+}
+\setbeamertemplate{navigation symbols}{}
+\defbeamertemplate{frame footer}{none}{}
+\defbeamertemplate{frame footer}{custom}[1]{ #1 }
+\defbeamertemplate{frame numbering}{none}{}
+\defbeamertemplate{frame numbering}{counter}{\insertframenumber}
+\defbeamertemplate{frame numbering}{fraction}{
+  \insertframenumber/\inserttotalframenumber
+}
+\defbeamertemplate{headline}{plain}{}
+\defbeamertemplate{footline}{plain}{%
+  \begin{beamercolorbox}[wd=\textwidth, sep=3ex]{footline}%
+    \usebeamerfont{page number in head/foot}%
+    \usebeamertemplate*{frame footer}
+    \hfill%
+    \usebeamertemplate*{frame numbering}
+  \end{beamercolorbox}%
+}
+\newlength{\mis@frametitle@padding}
+\setlength{\mis@frametitle@padding}{2.2ex}
+\newcommand{\mis@frametitlestrut@start}{
+  \rule{0pt}{\mis@frametitle@padding +%
+    \totalheightof{%
+      \ifcsdef{mis@frametitleformat}{\mis@frametitleformat X}{X}%
+    }%
+  }%
+}
+\newcommand{\mis@frametitlestrut@end}{
+  \rule[-\mis@frametitle@padding]{0pt}{\mis@frametitle@padding}
+}
+\defbeamertemplate{frametitle}{plain}{%
+  \nointerlineskip%
+  \begin{beamercolorbox}[%
+      wd=\paperwidth,%
+      sep=0pt,%
+      leftskip=\mis@frametitle@padding,%
+      rightskip=\mis@frametitle@padding,%
+    ]{frametitle}%
+  \mis@frametitlestrut@start%
+  \insertframetitle%
+  \nolinebreak%
+  \mis@frametitlestrut@end%
+  \end{beamercolorbox}%
+}
+\setbeamertemplate{frametitle continuation}{%
+  \usebeamerfont{frametitle}
+  \romannumeral \insertcontinuationcount
+}
+\newlength{\mis@progressinheadfoot}
+\newlength{\mis@progressinheadfoot@linewidth}
+\setlength{\mis@progressinheadfoot@linewidth}{0.4pt}
+\setbeamertemplate{progress bar in head/foot}{
+  \nointerlineskip
+  \setlength{\mis@progressinheadfoot}{%
+    \paperwidth * \ratio{\insertframenumber pt}{\inserttotalframenumber pt}%
+  }%
+  \begin{beamercolorbox}[wd=\paperwidth]{progress bar in head/foot}
+    \tikzexternaldisable%
+    \begin{tikzpicture}
+      \fill[bg] (0,0) rectangle (\paperwidth, \mis@progressinheadfoot@linewidth);
+      \fill[fg] (0,0) rectangle (\mis@progressinheadfoot, \mis@progressinheadfoot@linewidth);
+    \end{tikzpicture}%
+    \tikzexternalenable%
   \end{beamercolorbox}
 }
-
-\mode<all>
+\AtBeginDocument{%
+  \apptocmd{\appendix}{%
+    \pgfkeys{%
+      /mis/outer/.cd,
+      numbering=none,
+      progressbar=none}
+    }{}{}
+}
+\mis@outer@setdefaults
+\ProcessPgfPackageOptions{/mis/outer}
+\endinput
+%%
+%% End of file `beamerouterthememis.sty'.
