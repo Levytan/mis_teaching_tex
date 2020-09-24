@@ -28,30 +28,40 @@
 \pgfkeys{
   /mis/color/background/.cd,
     .is choice,
+    ghost/.code=\mis@colors@ghost,
     dark/.code=\mis@colors@dark,
     light/.code=\mis@colors@light,
 }
 \newcommand{\mis@color@setdefaults}{
   \pgfkeys{/mis/color/.cd,
-    background=light,
+    background=ghost,
     block=transparent,
   }
 }
 \definecolor{mDarkBrown}{HTML}{604c38}
-\definecolor{mDarkTeal}{HTML}{23373b}
+\definecolor{MIS-blue}{HTML}{17469e}
 \definecolor{mLightBrown}{HTML}{EB811B}
 \definecolor{mLightGreen}{HTML}{14B03D}
+\definecolor{MIS-white}{HTML}{f8f8ff}
 \newcommand{\mis@colors@dark}{
   \setbeamercolor{normal text}{%
     fg=black!2,
-    bg=mDarkTeal
+    bg=MIS-blue
   }
   \usebeamercolor[fg]{normal text}
 }
 \newcommand{\mis@colors@light}{
   \setbeamercolor{normal text}{%
-    fg=mDarkTeal,
+    fg=MIS-blue,
     bg=black!2
+  }
+}
+\newcommand{\mis@colors@ghost}{
+  \setbeamercolor{background canvas}{%
+    bg=MIS-white
+  }
+  \setbeamercolor{normal text}{%
+    fg=MIS-blue
   }
 }
 \setbeamercolor{alerted text}{%
