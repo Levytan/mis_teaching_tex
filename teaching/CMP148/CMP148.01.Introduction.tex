@@ -1,0 +1,177 @@
+% !TEX program = xelatex
+\documentclass[11pt]{beamer}
+
+\usepackage{unicode-math}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[style=ddmmyyyy]{datetime2}
+\usepackage{hyperref}
+\usepackage{fontspec}
+
+\makeatletter
+\def\input@path{{../../theme/}}
+\makeatother
+
+\usetheme{mis}
+
+\setsansfont{Rosario}[Numbers=OldStyle]
+\setmathfont{STIX Two Math}[Scale=MatchLowercase]
+\setmonofont{Consolas}[Scale=MatchLowercase]
+
+\author{Lê Thành Văn}
+\title{Lập trình nâng cao}
+\institute{Khoa Hệ thống thông tin quản lý}
+\date{\today}
+% package setting
+\hypersetup {
+	colorlinks = true
+}
+%\usecolortheme{seahorse}
+% short hand
+\newcommand{\pandas}{\texttt{pandas}}
+%
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+%
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\section{Giới thiệu}
+\subsection{Học phần}
+\begin{frame}{Học phần}
+Học phần này bao gồm 2 phần chính :
+\begin{itemize}
+\item Làm việc với \texttt{DataFrame} (thư viện \pandas\ của Python).
+\item Giới thiệu về machine learning và các thuật toán cơ bản.
+\end{itemize}
+\end{frame}
+\subsection{Mục đích}
+\begin{frame}{Mục đích}
+\begin{itemize}
+\item Nắm bắt được các giai đoạn và kỹ năng cơ bản khi phân tích dữ liệu
+\item Nắm bắt các thuật toán machine learning cơ bản
+\end{itemize}
+\end{frame}
+\section{Thư viện \pandas}
+\subsection{Giới thiệu về \pandas}
+\begin{frame}{Giới thiệu về \pandas}
+\begin{itemize}
+\item Là một thư viện trên Python được phát triển bởi Wes McKinney trong năm 2008.
+\item Là thư viện chuẩn cho việc phân tích dữ liệu khi dùng Python.
+\end{itemize}
+\end{frame}
+\subsection{Tính năng của \pandas}
+\begin{frame}{Tính năng của \pandas}
+\begin{itemize}
+\item Có thể xử lý tập dữ liệu khác nhau về định dạng.
+\item Có khả năng đọc dữ liệu từ nhiều nguồn khác nhau (csv, db/sql, excel, ...).
+\item Có thể xử lý nhiều phép toán cho tập dữ liệu
+\item Xử lý mất mát dữ liệu
+\end{itemize}
+\end{frame}
+\subsection{Các kiểu dữ liệu trong \pandas}
+\begin{frame}{Các kiểu dữ liệu trong \pandas}
+\begin{itemize}
+\item \texttt{Series} : kiểu dữ liệu dạng mảng 1 chiều
+\item \texttt{DataFrame} : kiểu dữ liệu mảng 2 chiều
+\item \texttt{Panel} : kiểu dữ liệu mảng 3 chiều
+\end{itemize}
+\end{frame}
+\subsection{Cài đặt \pandas}
+\begin{frame}{Cài đặt \pandas}
+\begin{itemize}
+\item Thường sẽ được đi kèm khi cài đặt anaconda.
+\item Nếu không sử dụng anaconda thì chạy \texttt{pip install pandas} trong command prompt (cmd)
+\end{itemize}
+\end{frame}
+\subsection{Sử dụng \pandas\ trong python}
+\begin{frame}{Sử dụng \pandas\ trong python}
+Để sử dụng \pandas\, thêm dòng \texttt{import pandas as pd}\ ở đầu file
+\end{frame}
+\section{Machine Learning}
+\subsection{Giới thiệu}
+\begin{frame}{Giới thiệu}
+Nói một cách đơn giản, machine learning (máy học) là những phương pháp cung cấp cho máy tính cách học hỏi mà không cần hướng dẫn chi tiết từng bước.\\
+Machine learning là một ĩnh vực của Artificial Intelligence (AI, trí tuệ nhân tạo)
+\end{frame}
+\subsection{Phương pháp}
+\begin{frame}{Phương pháp}
+Machine learning bao gồm các phương pháp sau (theo cách học) :
+\begin{itemize}
+\item Supervised Learning : học có giám sát (phân loại (classification), hồi quy (regression), ...)
+\item Unsupervised Learning : học không giám sát (phân nhóm (clustering), ...)
+\item Reinforcement Learning : học củng cố (học sâu (deep learing), mạng nơ-ron (neural networks), ...)
+\end{itemize}
+\end{frame}
+\subsection{Các vấn đề}
+\begin{frame}
+Hiện tại, có rất nhiều vấn đề được giải quyết bằng machine learning
+\begin{itemize}
+\item Xử lý ảnh (gắn thẻ hình ảnh, nhận diện ký tự, nhận diện khuôn mặt, ...)
+\item Xử lý văn bản (phát hiện spam, phân tích ngữ nghĩa, ...)
+\item Khai phá dữ liệu (gom nhóm, dự đoán, ...)
+\end{itemize}
+\end{frame}
+\subsection{Quy trình cơ bản}
+\begin{frame}{Quy trình cơ bản}
+  \begin{enumerate}
+    \item Thu thập dữ liệu
+    \item Làm sạch dữ liệu
+    \item Khám phá dữ liệu
+    \item Chuyển đổi dữ liệu
+    \item Xây dựng mô hình
+    \item Đánh giá và điều chỉnh
+  \end{enumerate}
+
+\end{frame}
+\subsection{Machine learning trong Python}
+\begin{frame}{Machine learning trong Python}
+Trong python có nhiều package về machine learning như \texttt{scikit-learn}, \texttt{TensorFlow}, ...
+\end{frame}
+\section{Tài liệu tham khảo}
+\subsection{\pandas}
+\begin{frame}{\pandas}
+\begin{itemize}
+\item \href{https://www.tutorialspoint.com/python_pandas/index.htm}{Hướng dẫn về \pandas}
+\item \href{https://pandas.pydata.org/pandas-docs/stable/}{\pandas ' documentation} : tài liệu của \pandas{} (phương thức, kiểu dữ liệu, ...).
+\item \href{https://stackoverflow.com/questions/tagged/pandas}{Stack Overflow về \pandas{}} : là nơi sẽ trả lời các khó khăn khi làm việc với \pandas
+\end{itemize}
+\end{frame}
+\subsection{Machine Learning}
+\begin{frame}{Machine Learning}
+\begin{itemize}
+\item \href{https://scikit-learn.org/stable/documentation.html}{scikit-learn's documentation} : tài liệu của scikit-learn (thư viện machine learning của microsoft)
+\item \href{https://www.tensorflow.org/tutorials/}{Hướng dẫn về TensorFlow} : thư viện machine learning của Google
+\end{itemize}
+\end{frame}
+\subsection{Khóa học}
+\begin{frame}{Khóa học}
+\begin{itemize}
+\item \href{https://courses.edx.org/courses/course-v1:Microsoft+DAT210x+6T2016/course/}{Programming with Python for Data Science} : khóa học về \pandas{} và một số thuật toán cơ bản trong machine learning.
+\item \href{https://www.coursera.org/learn/machine-learning}{Khóa học machine learning của Andrew Ng}
+\end{itemize}
+\end{frame}
+\subsection{Khác}
+\begin{frame}{Khác}
+Sách :
+\begin{itemize}
+\item \href{https://pdfs.semanticscholar.org/ce61/5ae61d67db8537e981a0a08da7f0f2ff1cee.pdf?_ga=2.176850727.342533066.1573446520-1563216005.1573446520}{Understanding Machine Learning: From Theory to Algorithms}
+\end{itemize}
+Internet
+\begin{itemize}
+\item \href{https://machinelearningcoban.com/}{Machine Learning cơ bản}
+\end{itemize}
+\end{frame}
+\end{document} 
