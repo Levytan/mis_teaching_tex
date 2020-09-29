@@ -31,15 +31,10 @@
 % short hand
 \newcommand{\pandas}{\texttt{pandas}}
 %
-\AtBeginSection[]{
-  \begin{frame}
-  \vfill
-  \centering
-  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
-    \usebeamerfont{title}\insertsectionhead\par%
-  \end{beamercolorbox}
-  \vfill
-  \end{frame}
+\AtBeginSection{
+  \frame{
+    \sectionpage
+  }
 }
 %
 \begin{document}
