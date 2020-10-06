@@ -2,10 +2,8 @@
 \documentclass[11pt]{beamer}
 
 \usepackage{unicode-math}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
 \usepackage[style=ddmmyyyy]{datetime2}
+\usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{fontspec}
 \usepackage{xcolor}
@@ -37,7 +35,9 @@
     \sectionpage
   }
 }
-%
+% graphic path
+\graphicspath{{../../media/}}
+
 \begin{document}
 
 	\begin{frame}
@@ -148,46 +148,52 @@
 		\centering
 		\textcolor{red}{\texttt{import pandas as pd}}
 	\end{frame}
-	
-	\section{Machine Learning}
-\subsection{Giới thiệu}
-\begin{frame}{Giới thiệu}
-Nói một cách đơn giản, machine learning (máy học) là những phương pháp cung cấp cho máy tính cách học hỏi mà không cần hướng dẫn chi tiết từng bước.\\
-Machine learning là một ĩnh vực của Artificial Intelligence (AI, trí tuệ nhân tạo)
-\end{frame}
-\subsection{Phương pháp}
-\begin{frame}{Phương pháp}
-Machine learning bao gồm các phương pháp sau (theo cách học) :
-\begin{itemize}
-\item Supervised Learning : học có giám sát (phân loại (classification), hồi quy (regression), ...)
-\item Unsupervised Learning : học không giám sát (phân nhóm (clustering), ...)
-\item Reinforcement Learning : học củng cố (học sâu (deep learing), mạng nơ-ron (neural networks), ...)
-\end{itemize}
-\end{frame}
-\subsection{Các vấn đề}
-\begin{frame}
-Hiện tại, có rất nhiều vấn đề được giải quyết bằng machine learning
-\begin{itemize}
-\item Xử lý ảnh (gắn thẻ hình ảnh, nhận diện ký tự, nhận diện khuôn mặt, ...)
-\item Xử lý văn bản (phát hiện spam, phân tích ngữ nghĩa, ...)
-\item Khai phá dữ liệu (gom nhóm, dự đoán, ...)
-\end{itemize}
-\end{frame}
-\subsection{Quy trình cơ bản}
-\begin{frame}{Quy trình cơ bản}
-  \begin{enumerate}
-    \item Thu thập dữ liệu
-    \item Làm sạch dữ liệu
-    \item Khám phá dữ liệu
-    \item Chuyển đổi dữ liệu
-    \item Xây dựng mô hình
-    \item Đánh giá và điều chỉnh
-  \end{enumerate}
 
-\end{frame}
-\subsection{Machine learning trong Python}
-\begin{frame}{Machine learning trong Python}
-Trong python có nhiều package về machine learning như \texttt{scikit-learn}, \texttt{TensorFlow}, ...
-\end{frame}
+	\section{Machine Learning}
+	\begin{frame}{Giới thiệu}
+		Machine learning (máy học) là những phương pháp cung cấp cho máy tính cách học hỏi mà không cần hướng dẫn chi tiết từng bước.\\
+		Machine learning là một lĩnh vực của Artificial Intelligence (AI, trí tuệ nhân tạo)
+	\end{frame}
+
+	\begin{frame}{Phương pháp}
+	Machine learning bao gồm các phương pháp sau:
+		\begin{itemize}
+			\item Supervised Learning: học có giám sát (phân loại (classification), hồi quy (regression), \dots)
+			\item Unsupervised Learning: học không giám sát (phân nhóm (clustering), \dots)
+			\item Reinforcement Learning: học củng cố (học sâu (deep learing), mạng nơ-ron (neural networks), \dots)
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}{Vấn đề giải quyết được}
+		Hiện tại, có rất nhiều vấn đề được giải quyết bằng machine learning
+		\begin{itemize}
+			\item Xử lý ảnh (gắn thẻ hình ảnh, nhận diện ký tự, nhận diện khuôn mặt, ...)
+			\item Xử lý văn bản (phát hiện spam, phân tích ngữ nghĩa, ...)
+			\item Khai phá dữ liệu (gom nhóm, dự đoán, ...)
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}{Quy trình cơ bản}
+		Thông thường, người ta sử dụng quy trình sau để giải quyết vấn đề bằng machine learing:
+		\begin{enumerate}
+			\item Thu thập dữ liệu
+			\item Làm sạch dữ liệu
+			\item Khám phá dữ liệu
+			\item Chuyển đổi dữ liệu
+			\item Xây dựng mô hình
+			\item Đánh giá và điều chỉnh
+		\end{enumerate}
+	\end{frame}
+
+	\begin{frame}
+		\begin{figure}
+			\includegraphics[width=\textwidth]{ml.png}
+			\caption{Quy trình cơ bản}
+		\end{figure}
+	\end{frame}
+
+	\begin{frame}{Machine learning trong Python}
+		Trong python có nhiều package về machine learning như \texttt{scikit-learn}, \texttt{TensorFlow}, \dots
+	\end{frame}
 
 \end{document} 
