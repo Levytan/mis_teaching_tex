@@ -1,0 +1,103 @@
+% !TEX program = xelatex
+\documentclass[11pt]{beamer}
+
+\usepackage{unicode-math}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[style=ddmmyyyy]{datetime2}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{fontspec}
+
+\makeatletter
+\def\input@path{{../../theme/}}
+\makeatother
+
+\usetheme{mis}
+
+\setsansfont{Rosario}[Numbers=OldStyle]
+\setmathfont{STIX Two Math}[Scale=MatchLowercase]
+\setmonofont{Consolas}[Scale=MatchLowercase]
+
+\author{Lê Thành Văn}
+\title{Cơ sở dữ liệu căn bản}
+\institute{Khoa Hệ thống thông tin quản lý}
+\date{\today}
+% package setting
+\hypersetup {
+	colorlinks = true
+}
+%\usecolortheme{seahorse}
+% graphic path
+\graphicspath{{../../media/}}
+
+%
+\AtBeginSection{
+  \frame{
+    \sectionpage
+  }
+}
+
+\begin{document}
+    \begin{frame}
+        \titlepage
+    \end{frame}
+
+    \section{Giới thiệu môn học}
+    \begin{frame}{Mục tiêu}
+        \begin{itemize}
+            \item Nắm được các kiến thức nền tảng của CSDL.
+            \item Nắm được các mô hình dữ liệu:
+            \begin{itemize}
+                \item Mô hình thực thể quan hệ.
+                \item Mô hình thực thể quan hệ mở rộng.
+                \item Mô hình quan hệ.
+            \end{itemize}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Nội dung}
+        \begin{itemize}
+            \item Tổng quan về cơ sở dữ liệu.
+            \item Mô hình thực thể quan hệ.
+            \item Mô hình thực thể quan hệ mở rộng.
+            \item Mô hình quan hệ.
+            \item Đại số quan hệ.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Điểm số}
+        \begin{itemize}
+            \item Điểm quá trình (50\%)
+            \begin{itemize}
+                \item Điểm chuyên cần (40\%).
+                \item Điểm bài tập (60\%).
+            \end{itemize}
+            \item Điểm cuối kỳ (50\%)
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Thời khóa biểu}
+        \begin{itemize}
+            \item Lý thuyết (10 buổi, 3 tiết một buổi)
+            \begin{itemize}
+                \item Thứ 2 (tiết 1): 30/11/2020 -- 18/01/2020.
+                \item Thứ 4 (tiết 1): 02/12/2020 -- 09/12/2020.
+            \end{itemize}
+            \item Thực hành (6 buổi, 5 tiết một buổi)
+            \begin{itemize}
+                \item Thứ 7 (tiết 1): 12/12/2020 -- 16/01/2020.
+            \end{itemize}
+        \end{itemize}
+    \end{frame}
+
+    \section{Tài liệu tham khảo}
+    \begin{frame}{Sách}
+        \begin{itemize}
+            \item {[Raghu Ramakrishnan, Johannes Gehrke]}, \href{http://pages.cs.wisc.edu/~dbbook/openAccess/thirdEdition/supporting_material.htm}{Database Management Systems}, 3rd Edition.
+            \item {[Ramez Elmasri, Shamkant Navathe]}, \href{https://www.amazon.com/Fundamentals-Database-Systems-Ramez-Elmasri/dp/0133970779}{Fundamentals of Database Systems}, 7th Edition.
+            \item {[Đồng Thị Bích Thủy, Phạm Thị Bạch Huệ, Nguyễn Trần Minh Thư]}, \href{http://nxbkhkt.com.vn/component/books/details/411}{Giáo trình cơ sở dữ liệu}
+        \end{itemize}
+    \end{frame}
+\end{document}
