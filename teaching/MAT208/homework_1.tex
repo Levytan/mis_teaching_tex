@@ -1,0 +1,82 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage[style=ddmmyyyy]{datetime2}
+\usepackage{geometry}
+\usepackage{fontspec}
+\usepackage{setspace}
+\usepackage{unicode-math}
+\usepackage{xcolor}
+\usepackage{indentfirst}
+\usepackage{enumitem}
+\usepackage{graphicx}
+
+%fontspec settings
+\setmainfont{Source Serif Pro}
+\setmathfont{STIX Two Math}[Scale=MatchLowercase]
+\setmonofont{Consolas}[Scale=MatchLowercase]
+\setlist[itemize]{noitemsep, topsep=0.5em}
+%geometry
+\geometry{
+	left = 20mm,
+	right = 15mm,
+	top = 20mm,
+	bottom=20mm,
+}
+
+\title{Bài tập về nhà 1 \\ \Large Đáp án Phần Lý thuyết}
+\date{}
+\begin{document}
+    \onehalfspacing
+    \maketitle
+    \textbf{Bài 1}: Cho hàm số $A(m, n)$ ($m, n$ là các số tự nhiên) được định nghĩa như sau:
+    \begin{subequations}
+        \begin{align}
+            A(0, n) &= n + 1 \label{eqn:line-1}\\
+            A(m, 0) &= A(m - 1, 1) \label{eqn:line-2}\\
+            A(m, n) &= A(m - 1, A(m, n - 1)) \label{eqn:line-3}
+        \end{align}
+        \label{eqn:all-lines}
+    \end{subequations}
+    Tính $A(1, 2)$ và $A(2, 1)$.
+
+    Ta có:
+    \begin{align*}
+        A(1, 2) &= A(0, A(1, 1)) &&\text{do}\ (\ref{eqn:line-3})\\
+        &= A(0, A(0, A(1, 0))) &&\text{do}\ (\ref{eqn:line-3})\\
+        &= A(0, A(0, A(0, 1))) &&\text{do}\ (\ref{eqn:line-2})\\
+        &= A(0, A(0, 2)) &&\text{do}\ (\ref{eqn:line-1})\\
+        &= A(0, 3) &&\text{do}\ (\ref{eqn:line-1})\\
+        &= 4 &&\text{do}\ (\ref{eqn:line-1})\\
+    \end{align*}
+
+    \begin{align*}
+        A(2, 1) &= A(1, A(1, 1)) &&\text{do}\ (\ref{eqn:line-3})\\
+        &= A(1, A(0, A(1, 0))) &&\text{do}\ (\ref{eqn:line-3})\\
+        &= A(1, A(0, A(0, 1))) &&\text{do}\ (\ref{eqn:line-2})\\
+        &= A(1, A(0, 2)) &&\text{do}\ (\ref{eqn:line-1})\\
+        &= A(1, 3) &&\text{do}\ (\ref{eqn:line-1})\\
+        &= A(0, A(1, 2)) &&\text{do}\ (\ref{eqn:line-3})\\
+        &= A(0, 4) &&(A(1, 2)\ \text{tính như trên})\\
+        &= 5 &&\text{do}\ (\ref{eqn:line-1})\\
+    \end{align*}
+    \newpage
+    \textbf{Bài 2}: Ta định nghĩa một chuỗi nhị phân là một chuỗi chỉ bao gồm các ký tự `0' và `1'. 
+    Gọi $S_n$ là số lượng chuỗi nhị phân có độ dài $n$ mà không có 2 ký tự `1' đứng kế nhau.
+    Chứng minh rằng:
+    $$S_{n + 2} = S_{n + 1} + S_{n},\quad n \geq 1$$
+
+    \textit{Đáp án}. Để thuận tiện, ta gọi chuỗi nhị phân không có hai ký tự `1' đứng liền nhau là \textit{chuỗi hợp lệ}.
+    Theo định nghĩa chuỗi nhị phân, thì một chuỗi nhị phân có độ dài $n + 2$ chỉ có thể bắt đầu bằng `0' hoặc `1'.
+    
+    Xét chuỗi hợp lệ độ dài $n + 2$ và bắt đầu bằng `0'. 
+    Có thể thấy rằng, nếu bỏ ký tự `0' ở đầu này, ta được một chuỗi hợp lệ độ dài $n + 1$.
+
+    Xét chuỗi hợp lệ độ dài $n + 2$ và bắt đầu bằng `1'.
+    Do tính chất của chuỗi hợp lệ, ký tự kế tiếp phải là `0'.
+    Và nếu ta bỏ đi `10' ở đầu chuỗi, ta được một chuỗi hợp lệ độ dài $n$.
+
+    Vậy, ta có thể kết luận:
+    $$S_{n + 2} = S_{n + 1} + S_{n},\quad n \geq 1$$
+\end{document}
