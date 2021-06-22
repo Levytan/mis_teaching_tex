@@ -1,0 +1,58 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage[style=ddmmyyyy]{datetime2}
+\usepackage{minted}
+\usepackage{geometry}
+\usepackage{fontspec}
+\usepackage{setspace}
+\usepackage{unicode-math}
+\usepackage{xcolor}
+\usepackage{indentfirst}
+\usepackage{enumitem}
+\usepackage{graphicx}
+
+%fontspec settings
+\setmainfont{Source Serif Pro}
+\setmathfont{STIX Two Math}[Scale=MatchLowercase]
+\setmonofont{Consolas}[Scale=MatchLowercase]
+\setlist[itemize]{noitemsep, topsep=0.5em}
+%geometry
+\geometry{
+	left = 20mm,
+	right = 15mm,
+	top = 20mm,
+	bottom=20mm,
+}
+
+\title{Bài tập thực hành 2}
+\date{\today}
+\author{}
+\begin{document}
+    \onehalfspacing
+    \maketitle
+    Viết chương trình python cho các bài toán sau.
+
+    \textbf{Bài 1}. Cho danh sách số $A$ được sắp xếp tăng dần và một số $k$, hãy tìm chỉ số $i$ nhỏ nhất sao cho:
+    $$k \leq A[i]$$
+    \textit{Quy ước}. Nếu $k$ lớn hơn số lớn nhất trong $A$ thì $i = len(A)$.
+    \textit{Ví dụ}:
+    \begin{itemize}
+        \item $A = [1, 2, 3, 5, 8]$, $k = 0 \rightarrow i = 0$.
+        \item $A = [1, 2, 3, 5, 8]$, $k = 3 \rightarrow i = 2$.
+        \item $A = [1, 2, 3, 5, 8]$, $k = 4 \rightarrow i = 3$.
+        \item $A = [1, 2, 3, 5, 8]$, $k = 9 \rightarrow i = 5$.
+    \end{itemize}
+
+    \textbf{Bài 2}. Cho danh sách số $A$, kiểm tra danh sách đó có được sắp xếp tăng dần hay không?
+
+    \textbf{Bài 3}. Cho thuật toán sắp xếp danh sách $A$ như sau:
+    \begin{enumerate}
+        \item Đặt $g = len(A) * 10 // 13$.
+        \item Thực hiện việc hoán đổi $A[i]$ và $A[i+g]$ nếu $A[i] > A[i+g]$ với tất cả những $i$ mà $i + g < len(A)$ (nói cách khác \texttt{for i in range(len(A)-g)})
+        \item Cập nhật $g = g * 10 // 13$, nếu lúc này $g < 1$ thì cho $g = 1$.
+        \item Thực hiện tiếp bước 2 và 3 cho đến khi danh sách $A$ được sắp xếp. 
+    \end{enumerate}
+    Viết chương trình python cho thuật toán trên.
+\end{document}
