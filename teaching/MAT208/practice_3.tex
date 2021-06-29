@@ -1,0 +1,76 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage[style=ddmmyyyy]{datetime2}
+\usepackage{minted}
+\usepackage{geometry}
+\usepackage{fontspec}
+\usepackage{setspace}
+\usepackage{unicode-math}
+\usepackage{xcolor}
+\usepackage{indentfirst}
+\usepackage{enumitem}
+\usepackage{graphicx}
+
+%fontspec settings
+\setmainfont{Source Serif Pro}
+\setmathfont{STIX Two Math}[Scale=MatchLowercase]
+\setmonofont{Consolas}[Scale=MatchLowercase]
+\setlist[itemize]{noitemsep, topsep=0.5em}
+%geometry
+\geometry{
+	left = 20mm,
+	right = 15mm,
+	top = 20mm,
+	bottom=20mm,
+}
+
+\title{Bài tập thực hành 3}
+\date{2021-06-29}
+\author{}
+\begin{document}
+    \onehalfspacing
+    \maketitle
+    \textbf{Bài 1}. Cho chương trình python dùng để chia danh sách làm ba phần như sau:
+    \begin{minted}{python}
+        def chia_mang(A):
+            """
+            Phần tử chốt được chọn là phần tử đứng cuối danh sách.
+            Input: Danh sách cần chia.
+            Output: Gồm 3 danh sách:
+                - left: gồm những phần tử nhỏ hơn chốt.
+                - right: gồm những phần tử lớn hơn chốt.
+                - [pivot]: danh sách chứa một phần tử chốt duy nhất.
+            """
+            left = right = []
+            pivot = A[-1]
+            for e in A[:-1]: # lặp từng phần tử trong A trừ phần tử cuối cùng
+                if e < pivot:
+                    left = left + [e]
+                else:
+                    right = right + [e]
+            return left, [pivot], right
+    \end{minted}
+    Viết lại chương trình sắp xếp nhanh sử dụng chương trình chia mảng ở trên.
+
+    \textbf{Bài 2}. Trong một danh sách số, ta định nghĩa một phần tử là cực đại nếu như 
+    nó lớn hơn phần tử liền trước và liền sau của chính phần tử đó.
+    Viết chương trình in ra các phần tử cực đại trong một danh sách số cho trước.
+
+    \textit{Ví dụ}. 
+    \begin{itemize}
+        \item $A = [8, 9, 10, 6, 5, 3]$, phần tử cực đại sẽ là $10$.
+        \item $A = [8, 7, 10, 2, 6, 5]$, phần tử cực đại sẽ là $8$ và $10$.
+    \end{itemize}
+    
+    \textbf{Bài 3}. Cho danh sách số $A$, viết chương trình tìm chỉ số $k$ sao cho $A[k+1]-A[k]$ là nhỏ nhất.
+    \newpage
+    \textbf{Bài 4}. Cho thuật toán tìm kiếm số $k$ trong danh sách số $A$ như sau:
+    \begin{enumerate}
+        \item Đặt $b = 1$.
+        \item \textbf{Gấp đôi} $b$ cho đến khi $k < A[b]$ hoặc $b > len(A)$.
+        \item Tìm kiếm nhị phân với điểm bắt đầu là $b//2$ và điểm kết thúc là $min(b, len(A))$.
+    \end{enumerate}
+    Viết chương trình python cho thuật toán trên.
+\end{document}
