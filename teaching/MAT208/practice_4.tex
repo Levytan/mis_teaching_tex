@@ -1,0 +1,50 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage[style=ddmmyyyy]{datetime2}
+\usepackage{minted}
+\usepackage{geometry}
+\usepackage{fontspec}
+\usepackage{setspace}
+\usepackage{unicode-math}
+\usepackage{xcolor}
+\usepackage{indentfirst}
+\usepackage{enumitem}
+\usepackage{graphicx}
+
+%fontspec settings
+\setmainfont{Source Serif Pro}
+\setmathfont{STIX Two Math}[Scale=MatchLowercase]
+\setmonofont{Consolas}[Scale=MatchLowercase]
+\setlist[itemize]{noitemsep, topsep=0.5em}
+%geometry
+\geometry{
+	left = 20mm,
+	right = 15mm,
+	top = 20mm,
+	bottom=20mm,
+}
+\title{Bài tập thực hành 4}
+\date{2021-07-06}
+\author{}
+\begin{document}
+    \onehalfspacing
+    \maketitle
+    \textbf{Bài 1}. Viết chương trình dùng sắp xếp theo cơ số (radix sort) để sắp xếp một danh sách các chuỗi ký tự.
+    Để đơn giản, chuỗi ký tự chỉ bao gồm các ký tự \textbf{in thường} từ `a' đến `z'.
+
+    \textbf{Bài 2}. Tương tự như heap cực đại, ta có thể định nghĩa \textit{heap cực tiểu} là 
+    một danh sách $A$ mà với mọi $i \geq 0$, ta có:
+    $$A[i] \leq A[2i+1]$$
+    $$A[i] \leq A[2i+2]$$
+    Viết lại chương trình sắp xếp vun đống sử dụng \textit{heap cực tiểu}.
+
+    \textbf{Bài 3}. Cho $A$ là một \textit{heap cực đại}, viết chương trình thêm \textbf{một} phần tử mới vào $A$
+    sao cho vẫn được một heap cực đại.
+    \textit{Ví dụ}. Giả sử $A = [190, 178, 145, 154, 54, 110, 137]$, khi đó:
+    \begin{itemize}
+        \item \texttt{them\_vao\_heap(A, 12) -> [190, 178, 145, 154, 54, 110, 137, 12]}
+        \item \texttt{them\_vao\_heap(A, 160) -> [190, 178, 145, 160, 54, 110, 137, 154]}
+    \end{itemize}
+\end{document}
