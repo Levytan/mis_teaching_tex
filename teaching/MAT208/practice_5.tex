@@ -1,0 +1,54 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage[style=ddmmyyyy]{datetime2}
+\usepackage{minted}
+\usepackage{geometry}
+\usepackage{fontspec}
+\usepackage{setspace}
+\usepackage{unicode-math}
+\usepackage{xcolor}
+\usepackage{indentfirst}
+\usepackage{enumitem}
+\usepackage{graphicx}
+
+%fontspec settings
+\setmainfont{Source Serif Pro}
+\setmathfont{STIX Two Math}[Scale=MatchLowercase]
+\setmonofont{Consolas}[Scale=MatchLowercase]
+\setlist[itemize]{noitemsep, topsep=0.5em}
+%geometry
+\geometry{
+	left = 20mm,
+	right = 15mm,
+	top = 20mm,
+	bottom=20mm,
+}
+\title{Bài tập thực hành 5}
+\date{2021-07-14}
+\author{}
+\begin{document}
+    \onehalfspacing
+    \maketitle
+	\textbf{Bài 1}. Cho một chuỗi gồm các ký tự từ `a' đến `z' (in thường), 
+	ta có thuật toán sắp xếp lại chuỗi này thành chuỗi mới với các ký tự xuất hiện theo thứ tự bảng chữ cái
+	(tức là từ chuỗi `asdfg' sẽ thành `adfgs') như sau.
+	\begin{enumerate}
+		\item Tạo một danh sách $C$ gồm 26 số 0 (\texttt{C = [0] * 26}). 
+		\item Cập nhật $C$ là số lần xuất hiện từng chữ cái trong chuỗi đã cho, với quy ước, 
+		$C[0]$ là số lần xuất hiện của ký tự `a',
+		$C[1]$ là số lần xuất hiện của ký tự `b',
+		..., $C[25]$ là số lần xuất hiện của ký tự `z'.
+		\item Tiếp tục cập nhật $C$ theo nguyên tắc $C[i] = C[i] + C[i-1]$ với $i = 1, 2, ..., 25$.
+		\item Tạo mỗi chuỗi mới $s\_new$ gồm toàn \textit{các khoảng trắng} với độ dài bằng độ dài chuỗi đã cho.
+		\item Với \textbf{từng ký tự} $ch$ trong chuỗi đã cho, lấy ra $C[i]$ tương ứng với ký tự đó 
+		(tức là nếu là `a' thì lấy $C[0]$, `b' thì lấy $C[1]$, ...), gán $s\_new[C[i]]$ bằng ký tự $ch$ đó
+		rồi giảm $C[i]$ đi 1.
+	\end{enumerate}
+	Viết chương trình python tương ứng cho thuật toán trên.
+
+	\textbf{Bài 2}. Viết chương trình tính $\binom{n}{k}$ ($0 \leq k \leq n$), biết rằng
+	$$\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k},$$
+	$$\binom{n}{n} = \binom{n}{0} = 1$$
+\end{document}
