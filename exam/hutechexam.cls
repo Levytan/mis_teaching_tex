@@ -16,18 +16,20 @@
 %\setlist[itemize]{noitemsep, topsep=0.5em}
 \geometry{
     a4paper,
-    left=15mm,
-    right=10mm,
-    top=15mm,
-    bottom=15mm,
+    left=25mm,
+    right=15mm,
+    top=20mm,
+    bottom=20mm,
     includefoot=true
 }
 \fancypagestyle{style}{
     \fancyhf{}
+    \fancyhead[R]{\textit{\small BM01a/QT04/ĐT-KT}}
     \fancyfoot[C]{\textit{Cán bộ coi thi không giải thích gì thêm}}
     \fancyfoot[R]{Trang \thepage/\pageref*{LastPage}}
-    \renewcommand{\headrulewidth}{0pt}  
+    \renewcommand{\headrulewidth}{1pt}  
     \renewcommand{\footrulewidth}{1pt}}
+    \setlength{\headheight}{14pt}%
 \pagestyle{style}
 
 \makeatletter
