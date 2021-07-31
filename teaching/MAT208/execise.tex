@@ -1,0 +1,41 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage[style=ddmmyyyy]{datetime2}
+\usepackage{geometry}
+\usepackage{fontspec}
+\usepackage{setspace}
+\usepackage{unicode-math}
+\usepackage{xcolor}
+\usepackage{indentfirst}
+\usepackage{enumitem}
+\usepackage{graphicx}
+
+%fontspec settings
+\setmainfont{Source Serif Pro}
+\setmathfont{STIX Two Math}[Scale=MatchLowercase]
+\setmonofont{Consolas}[Scale=MatchLowercase]
+\setlist[itemize]{noitemsep, topsep=0.5em}
+%geometry
+\geometry{
+	left = 20mm,
+	right = 15mm,
+	top = 20mm,
+	bottom=20mm,
+}
+
+\title{Kiểm tra bổ sung}
+\date{\today}
+\author{}
+\begin{document}
+    \onehalfspacing
+    \maketitle
+    \textbf{Bài 1}. Cho số tự nhiên $n$, viết chương trình tìm số tự nhiên $k$ sao cho $k^2 \leq n < (k+1)^2$.
+
+    \textbf{Bài 2}. Cho hai danh sách $A$ và $B$ được sắp xếp tăng dần,
+    viết chương trình tạo ra một danh sách $C$ cũng được sắp xếp tăng dần với tính chất 
+    $C[0]$, $C[2]$, $C[4]$, ... thuộc danh sách $A$ và $C[1]$, $C[3]$, $C[5]$, ... thuộc danh sách $B$.
+
+    \textit{Ví dụ}: Cho $A = [10, 15, 25]$, $B = [1, 5, 20, 30]$, ta có lấy ra $C = [10, 20, 15, 30]$. 
+\end{document}
