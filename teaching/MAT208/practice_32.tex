@@ -1,0 +1,60 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage[style=ddmmyyyy]{datetime2}
+\usepackage{minted}
+\usepackage{geometry}
+\usepackage{fontspec}
+\usepackage{setspace}
+\usepackage{unicode-math}
+\usepackage{xcolor}
+\usepackage{indentfirst}
+\usepackage{enumitem}
+\usepackage{graphicx}
+
+%fontspec settings
+\setmainfont{Source Serif Pro}
+\setmathfont{STIX Two Math}[Scale=MatchLowercase]
+\setmonofont{Consolas}[Scale=MatchLowercase]
+\setlist[itemize]{noitemsep, topsep=0.5em}
+%geometry
+\geometry{
+	left = 20mm,
+	right = 15mm,
+	top = 20mm,
+	bottom=20mm,
+}
+
+\title{Bài tập thực hành 3}
+\date{2021-08-13}
+\author{}
+\begin{document}
+    \onehalfspacing
+    \maketitle
+    \textbf{Bài 1}. Cho $n$ sợi dây có độ dài ngẫu nhiên, mỗi lần người ta sẽ nối hai sợi dây \textbf{ngắn nhất}
+    thành một sợi rồi tiếp tục việc nối dây đó cho đến khi được một sợi dây duy nhất. 
+    Biết rằng chi phí nối dây bằng tổng độ dài hai sợi dây được nối cộng thêm 1. 
+    Viết chương trình in ra tổng chi phí nối dây từ một danh sách A cho trước.
+    
+    \textit{Ví dụ}: Cho $A = [2, 3, 4, 5]$, khi đó:
+    \begin{enumerate}
+        \item Nối hai dây có độ dài 2 và 3, tổng chi phí là 2 + 3 + 1 = 6. Danh sách mới là $[5, 4, 5]$.
+        \item Nối hai dây có độ dài 4 và 5, tổng chi phí là 6 + 4 + 5 + 1 = 16. Danh sách mới là $[9, 5]$.
+        \item Nối hai dây có độ dài 9 và 5, tổng chi phí là 16 + 9 + 5 + 1 = 31.
+    \end{enumerate}
+
+    \textbf{Bài 2}. Tương tự \textbf{bài 1}, nhưng mỗi lần nối dây sẽ là nối sợi ngắn nhất và sợi dài nhất.
+    
+    \textbf{Bài 3}.  Cho một danh sách số $A$, ta định nghĩa chênh lệch $\delta_{i,j}$ giữa hai vị trí $i$ và $j$ như sau:
+    $$\delta_{i,j} = \Bigl|A[i]-A[j]\Bigl| + |i-j|$$
+    trong đó $|.|$ là giá trị tuyệt đối của 1 số.
+
+    Ví dụ: cho $A = [1, 3, 4, 7]$ thì chênh lệch giữa $i = 1$, $j = 2$ là 
+    $$\delta_{1,2} = \Bigl|A[1]-A[2]\Bigl| + |1-2| = |3-4| + 1 = 2$$
+    Ta tiếp tục định nghĩa vị thế $\Delta_k$ của vị trí $k$ 
+    là tổng tất các độ chênh lệch giữa ví trí $k$ với các vị trí còn lại, tức là:
+    $$\Delta_k = \delta_{0,k} + \delta_{1,j} + ... + \delta_{len(A)-1, k}$$
+
+    Viết chương trình tìm ra vị trí có vị thế nhỏ nhất trong một danh sách số $A$ cho trước.
+\end{document}
