@@ -1,0 +1,59 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage[style=ddmmyyyy]{datetime2}
+\usepackage{minted}
+\usepackage{geometry}
+\usepackage{fontspec}
+\usepackage{setspace}
+\usepackage{unicode-math}
+\usepackage{xcolor}
+\usepackage{indentfirst}
+\usepackage{enumitem}
+\usepackage{graphicx}
+
+%fontspec settings
+\setmainfont{Source Serif Pro}
+\setmathfont{STIX Two Math}[Scale=MatchLowercase]
+\setmonofont{Consolas}[Scale=MatchLowercase]
+\setlist[itemize]{noitemsep, topsep=0.5em}
+%geometry
+\geometry{
+	left = 20mm,
+	right = 15mm,
+	top = 20mm,
+	bottom=20mm,
+}
+\title{Bài tập thực hành 4}
+\date{2021-08-17}
+\author{}
+\begin{document}
+    \onehalfspacing
+    \maketitle
+    \textbf{Bài 1}. Cho danh sách số $A$, ta sẽ tạo một danh sách số mới từ $A$
+    bằng cách lấy hiệu hai phần tử liên tiếp trong $A$. 
+    Ví dụ $A = [1, 4, 9, 16]$ thì danh sách mới sẽ là $[3, 5, 7]$.
+    Tiếp tục thực hiện việc tạo danh sách này cho đến khi nhận được danh sách chỉ chứa các phần tử giống nhau.
+    Viết chương trình python để đếm số lần thực hiện với một danh sách số cho trước.
+    
+    \textit{Ví dụ}:
+    \begin{itemize}
+        \item $A = [1, 4, 9, 16] \rightarrow [3, 5, 7] \rightarrow [2, 2]$, chương trình trả về 2.
+        \item $A = [1, 8, 27, 64] \rightarrow [7, 19, 37] \rightarrow [12, 18] \rightarrow [6]$, chương trình trả về 3.
+    \end{itemize}
+
+    \textit{Gợi ý}: Dùng hàm \texttt{set()} của python.
+
+    \textbf{Bài 2}. Một cửa hàng bán nước giải khát với giá $c$ đồng một chai.
+    Cửa hàng đó cũng cho đổi vỏ chai đã dùng lấy một chai nước mới với tỷ lệ $e$ vỏ chai đổi một chai mới.
+    Trong túi của bạn có $m$ đồng. Viết chương trình python từ ba số $c$, $e$ và $m$ in ra số lượng chai tối đa mà một người có thể mua.
+
+    \textit{Ví dụ 1}: Cho $c = 2$, $e = 2$ và $m = 16$, chương trình sẽ in ra 15. 
+    Với 16 đồng thì mua được 8 chai, 8 vỏ này đổi được 4 chai mới, 4 vỏ lại đổi được 2 chai,
+    2 vỏ lại đổi được 1 chai. Tổng cộng là 8 + 4 + 2 + 1 = 15 chai.
+
+    \textit{Ví dụ 2}: Cho $c = 1$, $e = 3$ và $m = 15$, chương trình sẽ in ra 22.
+    Với 15 đồng sẽ mua được 15 chai, 15 vỏ đổi được 5 chai mới, 5 vỏ đổi được 1 chai mới (dư 2 vỏ chai),
+    chai mới đổi và 2 vỏ chai còn dư là 3 vỏ nên đổi được 1 chai nữa. Tổng cộng là 15 + 5 + 1 + 1 = 22 chai.
+\end{document}
