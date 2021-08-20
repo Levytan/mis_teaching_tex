@@ -1,0 +1,56 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage[style=ddmmyyyy]{datetime2}
+\usepackage{minted}
+\usepackage{geometry}
+\usepackage{fontspec}
+\usepackage{setspace}
+\usepackage{unicode-math}
+\usepackage{xcolor}
+\usepackage{indentfirst}
+\usepackage{enumitem}
+\usepackage{graphicx}
+
+%fontspec settings
+\setmainfont{Source Serif Pro}
+\setmathfont{STIX Two Math}[Scale=MatchLowercase]
+\setmonofont{Consolas}[Scale=MatchLowercase]
+\setlist[itemize]{noitemsep, topsep=0.5em}
+%geometry
+\geometry{
+	left = 20mm,
+	right = 15mm,
+	top = 20mm,
+	bottom=20mm,
+}
+\title{Bài tập thực hành 4}
+\date{2021-08-20}
+\author{}
+\begin{document}
+    \onehalfspacing
+    \maketitle
+    \textbf{Bài 1}. Viết chương trình nhập vào số $n$, in ra màn hình tổng
+	$$S = 1^n + 2^{n-1} + 3^{n-2} + ... + n^1$$
+
+	\textbf{Bài 2}. Viết chương trình nhập vào số $n$, in ra màn hình số $k$ lớn nhất sao cho $k! \leq n$.
+
+	\textbf{Bài 3}. Người ta muốn lát một căn phòng kích thước $m \times n$ ($m$ và $n$ là những số nguyên) bằng những viên gạch vuông với cạnh là số nguyên,
+	viết chương trình nhập vào 2 số $m$ và $n$ rồi in ra số viên gạch tối thiểu cần dùng.
+
+	\textit{Ví dụ}:
+	\begin{itemize}
+		\item Cho $m = 6$, $n = 4$, chương trình sẽ in ra 3 vì cần 1 viên $4 \times 4$ và 2 viên $2 \times 2$ để lát.
+		\item Cho $m = 8$, $n = 5$, chương trình sẽ in ra 4 vì cần 1 viên $5 \times 5$, 1 viên $3 \times 3$, 1 viên $2 \times 2$ và 2 viên $1 \times 1$ để lát.
+	\end{itemize} 
+	
+	\textbf{Bài 4}. Với mỗi số tự nhiên $n$, người ta chứng minh được rằng có thể biểu diễn $n$ dưới dạng:
+	$$n = a_0 + a_1 5 + a_2 5^2 + ... + a_k 5^k$$
+	với $a_i \in \{0, 1, 2, 3, 4\}\ (0 \leq i \leq k)$. Số $\Bigl.\overline{a_k ... a_2 a_1 a_0}\Bigr|_5$ được gọi là biểu diễn theo cơ số 5 của $n$.
+	Viết chương trình nhập vào số $n$, in ra màn hình biểu diễn theo cơ số 5 của $n$.
+
+	\textit{Gợi ý}: Từ đẳng thức ở trên, có thể thấy:
+	$$n\ \%\ 5 = a_0$$
+	$$n\ //\ 5 = a_1 + a_2 5 + ... + a_k 5^{k-1}$$
+\end{document}
