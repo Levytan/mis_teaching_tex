@@ -1,0 +1,85 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage[style=ddmmyyyy]{datetime2}
+\usepackage{minted}
+\usepackage{geometry}
+\usepackage{fontspec}
+\usepackage{setspace}
+\usepackage{unicode-math}
+\usepackage{xcolor}
+\usepackage{indentfirst}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{diagbox}
+
+%fontspec settings
+\setmainfont{Source Serif Pro}
+\setmathfont{STIX Two Math}[Scale=MatchLowercase]
+\setmonofont{Consolas}[Scale=MatchLowercase]
+\setlist[itemize]{noitemsep, topsep=0.5em}
+%geometry
+\geometry{
+	left = 20mm,
+	right = 15mm,
+	top = 20mm,
+	bottom=20mm,
+}
+%
+\renewcommand{\arraystretch}{1.2}
+\newcolumntype{M}{>{\centering\arraybackslash}m{0.8cm}}
+\title{Bài tập thực hành 6}
+\date{}
+\author{}
+\begin{document}
+    \onehalfspacing
+    \maketitle
+    \textbf{Bài 1}. Người ta muốn lát một căn phòng kích thước $m \times n$ ($m$ và $n$ là những số nguyên) 
+    bằng những viên gạch vuông với cạnh là lũy thừa của 2 ($1 \times 1$, $2 \times 2$, $4 \times 4$, $8 \times 8$, ...),
+	viết chương trình nhập vào 2 số $m$ và $n$ rồi in ra số viên gạch cần dùng.
+
+	\textit{Gợi ý}:
+	\begin{itemize}
+		\item Xét trường hợp $m = 2x$ và $n = 2y$, ta thấy rằng nếu gấp đôi cạnh của những viên gạch 
+		trong cách lát sàn $x \times y$ thì sẽ được cách lát của sàn $2x \times 2y$.
+		\item Xét trường hợp $m = 2x+1$ và $n = 2y$, có thể chia căn phòng thành hai phần gồm 
+        một phần $1 \times 2y$ và một phần $2x \times 2y$.
+        \item Xét trường hợp $m = 2x$ và $n = 2y+1$, có thể chia căn phòng thành hai phần gồm 
+        một phần $2x \times 1$ và một phần $2x \times 2y$.
+        \item Xét trường hợp $m = 2x+1$ và $n = 2y+1$, có thể chia căn phòng thành bốn phần gồm 
+        một phần $2x \times 1$, một phần $1 \times 2y$, một phần $1 \times 1$ và một phần $2x \times 2y$.
+	\end{itemize}
+
+    \textit{Kết quả tham khảo}
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{|c|M|M|M|M|M|M|M|M|}
+            \hline
+            \diagbox{$m$}{$n$} &$2$ &$3$ &$4$ &$5$ &$10$ &$15$ &$20$ &$25$          \\ \hline
+            $2$ &1 & & & & & & &     \\ \hline
+            $3$ &3 &6 & & & & & &       \\ \hline
+            $4$ &2 &6 &1 & & & & &       \\ \hline
+            $5$ &4 &9 &5 &10 & & & &       \\ \hline
+            $10$ &5 &15 &4 &14 &10 & & &      \\ \hline
+            $15$ &9 &24 &9 &24 &24 &48 & &      \\ \hline
+            $20$ &10 &30 &5 &25 &14 &39 &10 &      \\ \hline
+            $25$ &14 &39 &10 &35 &25 &60 &29 &55      \\ \hline
+        \end{tabular}
+    \end{table}
+
+    \textbf{Bài 2}. Viết chương trình nhập vào số tự nhiên $n$, in ra màn hình số cách có thể biểu diễn $n$
+    dưới dạng tổng của ba số tự nhiên.
+    
+    \textit{Kết quả tham khảo}
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{@{}lrrrrrrrrrrr@{}}
+        \toprule
+        $n$ &1 &2 &3 &4 &5 &6 &7 &8 &9 &10  \\ \midrule
+        Kết quả &3 &6 &10 &15 &21 &28 &36 &45 &55 &66 \\ \bottomrule
+        \end{tabular}
+    \end{table}
+\end{document}
