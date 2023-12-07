@@ -239,15 +239,17 @@
   khi biết được giá trị của $X$ thì ta xác định được \textbf{một} giá trị duy nhất của $Y$. \\
   Ký hiệu: $X \rightarrow Y$, đọc là $X$ xác định $Y$ hoặc $Y$ phụ thuộc vào $X$.  
 \end{frame}
-
+\begin{frame}
+  Ngoài ra, ta gọi phụ thuộc hàm $\fd{X}{Y}$ là \textbf{không tầm thường} nếu như 
+  $Y$ không phải là một bộ phận (tập con) của $X$.
+\end{frame}
 \begin{frame}
   \begin{columns}
     \begin{column}{0.5\textwidth}
-      Với dữ liệu ở bảng bên, ta có thể thấy các phụ thuộc hàm sau:
+      \uncover<1->{Với dữ liệu ở bảng bên, ta có thể thấy các phụ thuộc hàm sau:}
       \begin{itemize}
-        \item<1-> $\fd{A}{B}$, $\fd{A}{C}$, \dots
-        \item<2-> $\fd{BC}{A}$, $\fd{BC}{DE}$
-        \item<3-> \dots
+        \item<2-> $\fd{A}{B}$, $\fd{A}{C}$, \dots
+        \item<3-> $\fd{BC}{A}$, $\fd{BC}{DE}$, \dots
       \end{itemize}
     \end{column}
     \begin{column}{0.5\textwidth}
@@ -294,12 +296,12 @@
   \textbf{Dạng chuẩn 2} đạt được khi:
   \begin{itemize}
     \item Đạt được dạng chuẩn 1.
-    \item Không tồn tại phụ thuộc hàm một phần đối với bất kỳ khóa ứng viên có trong bảng.
+    \item Không tồn tại phụ thuộc hàm một phần giữa khóa ứng viên và cột không thuộc khóa.
   \end{itemize}
 \end{frame}
 \begin{frame}
-  Điều kiện thứ hai có nghĩa là, với bất kỳ khóa ứng viên có nhiều hơn hai cột, giả sử là $XY$,
-  thì với bất kỳ cột $Z$ không tham gia khóa, ta \textbf{chỉ có} $\fd{XY}{Z}$, 
+  Điều kiện thứ hai có nghĩa là, với bất kỳ khóa ứng viên có nhiều hơn một cột, giả sử là $XY$,
+  thì với bất kỳ cột $Z$ \textbf{không tham gia} khóa, ta \textbf{chỉ có} $\fd{XY}{Z}$, 
   mà không có $\fd{X}{Z}$ hoặc $\fd{Y}{Z}$.
 \end{frame}
 \begin{frame}
@@ -496,11 +498,27 @@
         chuyên ngành/NOR,
       }
       \draw[thick]
-      (người hướng dẫn2) edge[fkey={right=5cm}] (người hướng dẫn1); 
+      (người hướng dẫn1) edge[fkey={right=3cm}] (người hướng dẫn2); 
     \end{tikzpicture}
   }
 \end{frame}
-\section{Quy trình chuẩn hóa}
+\begin{frame}
+  \uncover<1->{Ta có so sánh sau giữa dạng chuẩn 3 và dạng chuẩn Boyce-Codd 
+  giữa bất kỳ phụ thuộc hàm không tầm thường $\fd{X}{Y}$} trong bảng.
+  \uncover<2->{
+  \begin{center}
+    \begin{tabular}{|l|l|}
+      \hline
+      \textbf{Dạng chuẩn 3} & \textbf{Dạng chuẩn Boyce-Codd}\\
+      \hline
+      $X$ là khóa ứng viên, hoặc & $X$ là khóa ứng viên \\
+      $Y$ là cột tham gia khóa & \\
+      \hline
+    \end{tabular}
+  \end{center}
+  }
+\end{frame}
+\subsection{Quy trình chuẩn hóa}
 \begin{frame}
   \uncover<1->{Như có thể thấy, quy trình chuẩn hóa có thể tóm gọn như sau:}
   \begin{enumerate}
@@ -508,5 +526,21 @@
     \item<3-> Xác định các phụ thuộc hàm.
     \item<4-> Tách bảng dựa trên phụ thuộc hàm.
   \end{enumerate}
+\end{frame}
+\section{Các vấn đề khác}
+\subsection{Các dạng chuẩn khác}
+\begin{frame}
+  Trong nghiên cứu, người ta còn định nghĩa các dạng chuẩn khác theo thứ tự:
+  \begin{enumerate}
+    \item Dạng chuẩn 4 (Fourth normal form, 4NF).
+    \item Dạng chuẩn 5 (Fifth normal form, 5NF).
+    \item Dạng chuẩn miền (Domain-key normal form, DKNF).
+    \item Dạng chuẩn 6 (Sixth normal form, 6NF).
+  \end{enumerate}
+\end{frame}
+\subsection{Hủy dạng chuẩn}
+\begin{frame}
+  \textbf{Hủy dạng chuẩn} là quá trình thêm vào những cấu trúc (cột, bảng) mới 
+  vào csdl \textbf{đã được chuẩn hóa} nhằm tăng hiệu năng cho việc đọc dữ liệu.
 \end{frame}
 \end{document}
