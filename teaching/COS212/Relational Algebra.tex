@@ -1,0 +1,374 @@
+\documentclass[11pt]{beamer}
+
+\usepackage{unicode-math}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[style=ddmmyyyy]{datetime2}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{fontspec}
+\usepackage{relsize}
+
+\makeatletter
+\def\input@path{{../../theme/}}
+\makeatother
+
+\usetheme[subsectionpage=progressbar]{mis}
+
+\setsansfont{Rosario}[Numbers=OldStyle]
+\setmathfont{STIX Two Math}[Scale=MatchLowercase]
+\setmonofont{Consolas}[Scale=MatchLowercase]
+
+\title{Đại số quan hệ}
+\institute{Khoa Hệ thống thông tin quản lý}
+\author{Lê Thành Văn}
+\date{\today}
+% package setting
+\hypersetup {
+	colorlinks = true
+}
+%\usecolortheme{seahorse}
+% graphic path
+\graphicspath{{../../media/}}
+
+%
+\AtBeginSection{
+  \frame{
+    \sectionpage
+  }
+}
+%newcommand
+\newcommand{\mmm}[1]{\mathlarger{\mathlarger{\mathlarger#1}}}%
+\newcommand{\ppi}[2]{\mmm{\pi}_{#1}(#2)}%
+\newcommand{\psig}[2]{\mmm{\sigma}_{#1}(#2)}%
+\newcommand{\prho}[2]{\mmm{\rho}_{#1}(#2)}%
+
+\begin{document}
+  \begin{frame}
+    \titlepage
+  \end{frame}
+  \section{Giới thiệu}
+  \subsection{Đại số quan hệ}
+  \begin{frame}
+    \textbf{Đại số quan hệ} là ngôn ngữ hình thức cho mô hình quan hệ được phát triển trước SQL. 
+    Đại số quan hệ còn có thể được hiểu là tập các thao tác trên mô hình quan hệ, được sử dụng như là cơ sở cho việc cài đặt và tối ưu các câu lệnh truy vấn.
+  \end{frame}
+  \begin{frame}
+    Một số khái niệm của đại số quan hệ được tích hợp vào các câu lệnh truy vấn của SQL, 
+    do đó việc tìm hiểu về đại số quan hệ là bệ phóng để xây dựng và thực thi các câu lệnh SQL một cách có hiệu quả.
+  \end{frame}
+  \subsection{Các khái niệm chung}
+  \begin{frame}
+    \uncover<1->{Như tên gọi, các đối tượng chính trong đại số quan hệ gồm:}
+    \begin{itemize}
+      \item<2-> Các quan hệ.
+      \item<3-> Những thao tác trên quan hệ.
+    \end{itemize}  
+  \end{frame}
+  \begin{frame}
+    Những thao tác thường được xét đến bao gồm
+    \begin{itemize}
+      \item Thao tác trên một quan hệ: phép chọn, phép chiếu.
+      \item Thao tác trên nhiều quan hệ: phép hợp, phép giao, phép trừ, phép kết.
+    \end{itemize}
+    Ta gọi những thao tác này là các toán tử.
+  \end{frame}
+  \begin{frame}
+    Sự kết hợp giữa các quan hệ cùng với các thao tác theo đúng cấu trúc được gọi là biểu thức quan hệ. \\
+    \textit{Ví dụ}. $\ppi{A = 1}{R \times S}$ (chọn ra những dòng có cột $A$ bằng 1 từ 
+    tích Đề-các của $R$ và $S$).
+  \end{frame}
+  \begin{frame}
+    Kết quả của một biểu thức quan hệ là một quan hệ.
+  \end{frame}
+  \section{Các toán tử cơ bản}
+  \subsection{Các ký hiệu cơ bản}
+  \begin{frame}
+    Để tiện cho việc theo dõi, chúng ta quy ước ký hiệu như sau:
+    \begin{itemize}
+      \item Tên quan hệ sẽ được ghi bằng chữ in hoa, ví dụ $R$, $S$, $CUSTOMER$, \dots
+      \item Tên cột sẽ ghi bằng cách viết các từ dính liền nhau và ghi in hoa chữ cái đầu mỗi từ (viết kiểu Pascal), ví dụ
+      Age, CustomerId, \dots 
+    \end{itemize}
+  \end{frame}
+  \subsection{Các phép toán tập hợp}
+  \begin{frame}
+    \uncover<1->{Đại số quan hệ được xây dựng trên lý thuyết tập hợp, nên ta có một số toán tử sau:}
+    \begin{itemize}
+      \item<2-> Phép hợp $R \cup S$.
+      \item<2-> Phép giao $R \cap S$.
+      \item<2-> Phép trừ $R - S$, hoặc $R \setminus S$.
+      \item<2-> Phép tích Đề-các $R \times S$.
+    \end{itemize}
+  \end{frame}
+  \begin{frame}
+    Trong đó, phép hợp, phép giao và phép trừ yêu cầu hai quan hệ $R$ và $S$ phải khả hợp.
+  \end{frame}
+  \begin{frame}
+    \uncover<1->{\textit{Định nghĩa}. Hai quan hệ $R(A_0, A_1, \dots, A_n)$ và $S(B_0, B_1, \dots, B_m)$ được gọi là khả hợp khi:}
+    \begin{itemize}
+      \item<2-> Có cùng số cột, $n = m$.
+      \item<3-> Miền xác định của $A_i$ phải giống miền xác định của $B_i$, $i = 0, 1, \dots, n$.
+    \end{itemize}
+  \end{frame}
+  \begin{frame}
+    \textit{Ví dụ}. Hai quan hệ sau đây là khả hợp:
+    \begin{center}
+      \begin{columns}[T]
+        \begin{column}{0.5\textwidth}
+          \begin{tabular}{|l|l|}
+            \hline
+            Tên & NgàySinh \\ \hline
+            Tùng & 12/08/1955 \\ \hline
+            Hằng & 19/07/1968 \\ \hline        
+          \end{tabular}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+          \begin{tabular}{|l|l|}
+            \hline
+            Tên & SinhNhật \\ \hline
+            Trinh & 05/07/1985 \\ \hline
+            Khang & 29/02/1980 \\ \hline 
+            Minh & 30/12/1988 \\ \hline
+          \end{tabular}
+        \end{column}
+      \end{columns}
+    \end{center}
+  \end{frame}
+  \begin{frame}
+    Kết quả của $R \cup S$, $R \cap S$ và $R \setminus S$ là một quan hệ với tên cột là tên cột của $R$.
+  \end{frame}
+  \begin{frame}{Phép hợp}
+    \textit{Định nghĩa}. Kết quả của phép hợp $R \cup S$ là tập hợp những dòng có trong $R$ \textbf{hoặc} có trong $S$.
+    $$R \cup S = \{u\ |\ u \in R \vee u \in S\}$$
+  \end{frame}
+  \begin{frame}
+    \begin{columns}[T]
+      \begin{column}{0.3\textwidth}
+        \centering $R$
+        \medskip \\
+        \begin{tabular}{||c|c||}
+          \hline
+          $\textbf{A}_0$ & $\textbf{A}_1$ \\[0.5ex] \hline\hline
+          $\alpha$ & 1 \\ \hline
+          $\alpha$ & 2 \\ \hline
+          $\beta$ & 1 \\ \hline
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.3\textwidth}
+        \centering $S$
+        \medskip \\
+        \begin{tabular}{||c|c||}
+          \hline
+          $\textbf{B}_0$ & $\textbf{B}_1$ \\[0.5ex] \hline\hline
+          $\alpha$ & 2 \\ \hline
+          $\beta$ & 3 \\ \hline
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.3\textwidth}
+        \centering $R \cup S$
+        \medskip \\
+        \begin{tabular}{||c|c||}
+          \hline
+          $\textbf{A}_0$ & $\textbf{A}_1$ \\[0.5ex] \hline\hline
+          $\alpha$ & 1 \\ \hline
+          $\alpha$ & 2 \\ \hline
+          $\beta$ & 1 \\ \hline
+          $\beta$ & 3 \\ \hline
+        \end{tabular}
+      \end{column}
+    \end{columns}
+  \end{frame}
+  \begin{frame}{Phép giao}
+    \textit{Định nghĩa}. Kết quả của phép giao $R \cap  S$ là tập hợp những dòng có trong $R$ \textbf{và} có trong $S$.
+    $$R \cap S = \{u\ |\ u \in R \wedge u \in S\}$$
+  \end{frame}
+  \begin{frame}
+    \begin{columns}[T]
+      \begin{column}{0.3\textwidth}
+        \centering $R$
+        \medskip \\
+        \begin{tabular}{||c|c||}
+          \hline
+          $\textbf{A}_0$ & $\textbf{A}_1$ \\[0.5ex] \hline\hline
+          $\alpha$ & 1 \\ \hline
+          $\alpha$ & 2 \\ \hline
+          $\beta$ & 1 \\ \hline
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.3\textwidth}
+        \centering $S$
+        \medskip \\
+        \begin{tabular}{||c|c||}
+          \hline
+          $\textbf{B}_0$ & $\textbf{B}_1$ \\[0.5ex] \hline\hline
+          $\alpha$ & 2 \\ \hline
+          $\beta$ & 3 \\ \hline
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.3\textwidth}
+        \centering $R \cap S$
+        \medskip \\
+        \begin{tabular}{||c|c||}
+          \hline
+          $\textbf{A}_0$ & $\textbf{A}_1$ \\[0.5ex] \hline\hline
+          $\alpha$ & 2 \\ \hline
+        \end{tabular}
+      \end{column}
+    \end{columns}
+  \end{frame}
+  \begin{frame}{Phép trừ}
+    \textit{Định nghĩa}. Kết quả của phép trừ $R \setminus S$ là tập hợp những dòng \textbf{có} trong $R$ 
+    \textbf{nhưng không có} trong $S$.
+    $$R \setminus S = \{u\ |\ u \in R \wedge u \not\in S\}$$
+  \end{frame}
+  \begin{frame}
+    \begin{columns}[T]
+      \begin{column}{0.3\textwidth}
+        \centering $R$
+        \medskip \\
+        \begin{tabular}{||c|c||}
+          \hline
+          $\textbf{A}_0$ & $\textbf{A}_1$ \\[0.5ex] \hline\hline
+          $\alpha$ & 1 \\ \hline
+          $\alpha$ & 2 \\ \hline
+          $\beta$ & 1 \\ \hline
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.3\textwidth}
+        \centering $S$
+        \medskip \\
+        \begin{tabular}{||c|c||}
+          \hline
+          $\textbf{B}_0$ & $\textbf{B}_1$ \\[0.5ex] \hline\hline
+          $\alpha$ & 2 \\ \hline
+          $\beta$ & 3 \\ \hline
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.3\textwidth}
+        \centering $R \setminus S$
+        \medskip \\
+        \begin{tabular}{||c|c||}
+          \hline
+          $\textbf{A}_0$ & $\textbf{A}_1$ \\[0.5ex] \hline\hline
+          $\alpha$ & 1 \\ \hline
+          $\beta$ & 1 \\ \hline
+        \end{tabular}
+      \end{column}
+    \end{columns}
+  \end{frame}
+  \begin{frame}{Phép tích Đề-các}
+    \textit{Định nghĩa}. Cho quan hệ $R$ có $m$ cột và quan hệ $S$ có $n$ cột, 
+    kết quả của phép tích Đề-các $R \times S$ là tập hợp những dòng có $m + n$ cột, 
+    trong đó $m$ cột đầu là một dòng của $R$ và $n$ cột sau là một dòng của $S$.
+    $$R \times S = \{\langle u, v\rangle \ |\ u \in R \wedge v \in S\}$$
+  \end{frame}
+  \begin{frame}
+    \begin{columns}[T]
+      \begin{column}{0.25\textwidth}
+        \centering $R$
+        \medskip \\
+        \begin{tabular}{||c|c||}
+          \hline
+          $\textbf{A}_0$ & $\textbf{A}_1$ \\[0.5ex] \hline\hline
+          $\alpha$ & 1 \\ \hline
+          $\alpha$ & 2 \\ \hline
+          $\beta$ & 1 \\ \hline
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.25\textwidth}
+        \centering $S$
+        \medskip \\
+        \begin{tabular}{||c|c||}
+          \hline
+          $\textbf{B}_0$ & $\textbf{B}_1$ \\[0.5ex] \hline\hline
+          $\gamma$ & 2 \\ \hline
+          $\delta$ & 3 \\ \hline
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.4\textwidth}
+        \centering $R \times S$
+        \medskip \\
+        \begin{tabular}{||c|c|c|c||}
+          \hline
+          $\textbf{A}_0$ & $\textbf{A}_1$ & $\textbf{B}_0$ & $\textbf{B}_1$\\[0.5ex] \hline\hline
+          $\alpha$ & 1 & $\gamma$ & 2 \\ \hline
+          $\alpha$ & 2 & $\gamma$ & 2 \\ \hline
+          $\beta$ & 1 & $\gamma$ & 2 \\ \hline
+          $\alpha$ & 1 & $\delta$ & 3 \\ \hline
+          $\alpha$ & 2 & $\delta$ & 3\\ \hline
+          $\beta$ & 1 & $\delta$ & 3\\ \hline
+        \end{tabular}
+      \end{column}
+    \end{columns}
+  \end{frame}
+  \begin{frame}{Tính chất}
+    \uncover<1->{
+      Tính giao hoán
+      \begin{itemize}
+        \item $R \cup S = S \cup R$.
+        \item $R \cap S = S \cap R$.
+      \end{itemize}
+    }
+    \uncover<2->{
+      Tính kết hợp
+      \begin{itemize}
+        \item $R \cup (S \cup T) = (R \cup S) \cup T$.
+        \item $R \cap (S \cap T) = (R \cap S) \cap T$.
+      \end{itemize}
+    }
+    \uncover<3->{
+      Tính phân phối
+      \begin{itemize}
+        \item $R \cup (S \cap T) = (R \cup S) \cap (R \cup T)$.
+        \item $R \cap (S \cup T) = (R \cap S) \cup (R \cap T)$.
+      \end{itemize}
+    }
+  \end{frame}
+  \subsection{Các toán tử quan hệ}
+  \begin{frame}{Phép chiếu}
+    \textit{Định nghĩa}. Cho quan hệ $R$ và một tập hợp $X$ gồm các cột có trong $R$, 
+    kết quả của phép chiếu $\ppi{X}{R}$ là một quan hệ chỉ bao gồm những cột có trong $X$.
+    Nói cách khác, ta loại bỏ khỏi $R$ những cột không có trong $X$. 
+  \end{frame}
+  \begin{frame}
+    \begin{columns}[T]
+      \begin{column}{0.4\textwidth}
+        \centering $R$
+        \bigskip \\
+        \begin{tabular}{||c|c|c||}
+          \hline
+          \textbf{A} & \textbf{B} & \textbf{C}  \\[0.5ex] \hline\hline
+          $\alpha$ & 1 & a\\ \hline
+          $\alpha$ & 2 & a\\ \hline
+          $\beta$ & 1 & b\\ \hline
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.25\textwidth}
+        \centering $\ppi{\text{A, B}}{R}$
+        \medskip \\
+        \begin{tabular}{||c|c||}
+          \hline
+          \textbf{A} & \textbf{B} \\[0.5ex] \hline\hline
+          $\alpha$ & 1\\ \hline
+          $\alpha$ & 2\\ \hline
+          $\beta$ & 1\\ \hline
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.25\textwidth}
+        \centering $\ppi{\text{A, C}}{R}$
+        \medskip \\
+        \begin{tabular}{||c|c||}
+          \hline
+          \textbf{A} & \textbf{C} \\[0.5ex] \hline\hline
+          $\alpha$ & a\\ \hline
+          $\beta$ & b\\ \hline
+        \end{tabular}
+      \end{column}
+    \end{columns}
+  \end{frame}
+  \begin{frame}{Phép chọn}
+  
+  \end{frame}
+\end{document}
