@@ -17,7 +17,7 @@
 \usetheme[subsectionpage=progressbar]{mis}
 
 \setsansfont{Rosario}[Numbers=OldStyle]
-\setmathfont{STIX Two Math}[Scale=MatchLowercase]
+\setmathfont{Asana Math}[Scale=MatchLowercase]
 \setmonofont{Consolas}[Scale=MatchLowercase]
 
 \title{Đại số quan hệ}
@@ -40,9 +40,9 @@
 }
 %newcommand
 \newcommand{\mmm}[1]{\mathlarger{\mathlarger{\mathlarger#1}}}%
-\newcommand{\ppi}[2]{\mmm{\pi}_{#1}(#2)}%
-\newcommand{\psig}[2]{\mmm{\sigma}_{#1}(#2)}%
-\newcommand{\prho}[2]{\mmm{\rho}_{#1}(#2)}%
+\newcommand{\ppi}[2]{\mmm{\pi}_{#1}\left(#2\right)}%
+\newcommand{\psig}[2]{\mmm{\sigma}_{#1}\left(#2\right)}%
+\newcommand{\prho}[2]{\mmm{\rho}_{#1}\left(#2\right)}%
 
 \begin{document}
   \begin{frame}
@@ -369,6 +369,117 @@
     \end{columns}
   \end{frame}
   \begin{frame}{Phép chọn}
-  
+  \textit{Định nghĩa}. Cho quan hệ $R$ và điều kiện so sánh $\theta$, kết quả của 
+  phép chọn $\psig{\theta}{R}$ là một quan hệ gồm \textbf{các dòng} mà điều kiện $\theta$ là đúng.
+  \end{frame}
+  \begin{frame}{Điều kiện so sánh}
+    \uncover<1->{Điều kiện so sánh gồm hai dạng:}
+    \begin{itemize}
+      \item<2-> $\langle\text{tên cột 1}\rangle\langle\text{phép so sánh}\rangle\langle\text{tên cột 2}\rangle$.
+      \item<3-> $\langle\text{tên cột}\rangle\langle\text{phép so sánh}\rangle\langle\text{giá trị vô hướng}\rangle$.
+    \end{itemize}
+  \end{frame}
+  \begin{frame}
+    \uncover<1->{Trong đó:}
+    \begin{itemize}
+      \item<2-> $\langle\text{phép so sánh}\rangle$ là các phép $<, >, \leq, \geq, =, \neq$.
+      \item<3-> $\langle\text{giá trị vô hướng}\rangle$ là một giá trị thuộc về miền xác định của $\langle\text{tên cột}\rangle$.
+    \end{itemize}
+  \end{frame}
+  \begin{frame}
+    \uncover<1->{Ngoài ra, còn có thể kết hợp nhiều điều kiện so sánh với nhau 
+    bằng $\wedge$ (phép hội), $\vee$ (phép tuyển) và $\neg$ (phép phủ định).}
+    \begin{itemize}
+      \item<2-> $\varphi \wedge \psi$: cả hai điều kiện được thỏa.
+      \item<3-> $\varphi \vee \psi$: một trong hai điều kiện được thỏa.
+      \item<4-> $\neg \varphi$: phủ định điều kiện $\varphi$ ($\neg (A < 5) \Leftrightarrow A \geq 5$).
+    \end{itemize}
+  \end{frame}
+  \begin{frame}
+    \begin{columns}[T]
+      \begin{column}{0.3\textwidth}
+        \centering $R$
+        \bigskip \\
+        \begin{tabular}{||c|c|c||}
+          \hline
+          \textbf{A} & \textbf{B} & \textbf{C}  \\[0.5ex] \hline\hline
+          $\alpha$ & 1 & a\\ \hline
+          $\alpha$ & 2 & a\\ \hline
+          $\beta$ & 1 & b\\ \hline
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.3\textwidth}
+        \centering $\psig{\text{A} = \alpha}{R}$
+        \medskip \\
+        \begin{tabular}{||c|c|c||}
+          \hline
+          \textbf{A} & \textbf{B} & \textbf{C} \\[0.5ex] \hline\hline
+          $\alpha$ & 1 & a\\ \hline
+          $\alpha$ & 2 & a\\ \hline
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.3\textwidth}
+        \centering $\psig{\text{A} = \alpha \wedge \text{B} < 2}{R}$
+        \medskip \\
+        \begin{tabular}{||c|c|c||}
+          \hline
+          \textbf{A} & \textbf{B} & \textbf{C} \\[0.5ex] \hline\hline
+          $\alpha$ & 1 & a\\ \hline
+          $\beta$ & 1 & b\\ \hline
+        \end{tabular}
+      \end{column}
+    \end{columns}
+  \end{frame}
+  \begin{frame}{Tính chất phép chọn}
+    \uncover<1->{Cho quan hệ $R$, hai điều kiện so sánh $\varphi$ và $\psi$, ta có các tính chất sau:}
+    \begin{itemize}
+      \item<2-> $\psig{\varphi}{\psig{\psi}{R}} = \psig{\varphi \wedge \psi}{R} = \psig{\varphi}{R} \cap \psig{\psi}{R}$
+      \item<3-> $\psig{\varphi \vee \psi}{R} = \psig{\varphi}{R} \cup \psig{\psi}{R}$
+      \item<4-> $\psig{\neg \varphi}{R} = R \setminus \psig{\varphi}{R}$
+    \end{itemize}
+  \end{frame}
+  \begin{frame}
+    \textit{Lưu ý}. Về cơ bản, giữa phép chọn và phép chiếu không có tính giao hoán, nghĩa là
+    $$
+    \ppi{X}{\psig{\theta}{R}} \neq \psig{\theta}{\ppi{X}{R}}
+    $$
+  \end{frame}
+  \begin{frame}{Phép gán}
+    \uncover<1->{Để tiện cho việc theo dõi, người ta thường tách một biểu thức quan hệ ra thành nhiều bước ngắn,
+    vì thế, cần đặt một tên tạm cho kết quả ở mỗi bước.} \\
+    \uncover<2->{Phép gán được ký hiệu bằng $\leftarrow$}.
+  \end{frame}
+  \begin{frame}
+    \uncover<1->{Chẳng hạn, biểu thức $\ppi{X}{\psig{\theta}{R}}$ có thể được ghi thành:}
+    \begin{enumerate}
+      \item<2-> $T \leftarrow \psig{\theta}{R}$.
+      \item<3-> $\ppi{X}{T}$.
+    \end{enumerate}
+  \end{frame}
+  \begin{frame}{Phép đổi tên}
+    \textit{Định nghĩa}. Cho quan hệ $R$ và cách đổi tên $N$, kết quả của phép đổi tên
+    $\prho{N}{R}$ vẫn là những thông tin đó, nhưng với tên quan hệ và tên cột được thay đổi dựa theo cách đổi tên $N$.
+  \end{frame}
+  \begin{frame}{Cách đổi tên}
+    \uncover<1->{Cách đổi tên $N$ có ba dạng sau:}
+    \begin{itemize}
+      \item<2-> $A/B$: đổi tên cột $B$ thành $A$.
+      \item<3-> $(B_0, B_1, \dots, B_n)$: đổi tên cột đầu tiên thành $B_0$, cột thứ hai thành $B_1$, \dots
+      \item<4-> $S(B_0, B_1, \dots, B_n)$: đổi tên quan hệ thành $S$, đổi tên cột đầu tiên thành $B_0$, cột thứ hai thành $B_1$, \dots
+    \end{itemize}
+  \end{frame}
+  \begin{frame}
+    \uncover<1->{Cho quan hệ $R(A, B, C)$, khi đó:}
+    \uncover<2->{
+      \begin{itemize}
+        \item $\prho{D/A}{R} = R(D, B, C)$.
+        \item $\prho{(D, E)}{R} = R(D, E, C)$.
+        \item $\prho{S(D, E, F)}{R} = S(D, E, F)$.
+      \end{itemize}
+    }
+  \end{frame}
+  \begin{frame}
+    Phép đổi tên thường được dùng trong trường hợp sử dụng đến phép kết 
+    hoặc có tính toán giữa các cột với nhau.
   \end{frame}
 \end{document}
