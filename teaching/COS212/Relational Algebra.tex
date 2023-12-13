@@ -9,6 +9,7 @@
 \usepackage{hyperref}
 \usepackage{fontspec}
 \usepackage{relsize}
+\usepackage{xparse}
 
 \makeatletter
 \def\input@path{{../../theme/}}
@@ -43,6 +44,13 @@
 \newcommand{\ppi}[2]{\mmm{\pi}_{#1}\left(#2\right)}%
 \newcommand{\psig}[2]{\mmm{\sigma}_{#1}\left(#2\right)}%
 \newcommand{\prho}[2]{\mmm{\rho}_{#1}\left(#2\right)}%
+\NewDocumentCommand{\join}{o}{%
+  \IfNoValueTF{#1}{
+    ~\mathlarger\bowtie~
+  }{
+    ~\mathlarger\bowtie_{#1}~
+  }%
+}%
 
 \begin{document}
   \begin{frame}
@@ -392,7 +400,7 @@
     \begin{itemize}
       \item<2-> $\varphi \wedge \psi$: cả hai điều kiện được thỏa.
       \item<3-> $\varphi \vee \psi$: một trong hai điều kiện được thỏa.
-      \item<4-> $\neg \varphi$: phủ định điều kiện $\varphi$ ($\neg (A < 5) \Leftrightarrow A \geq 5$).
+      \item<4-> $\neg \varphi$: phủ định điều kiện $\varphi$ (ví dụ: $\neg (A < 5) \Leftrightarrow A \geq 5$).
     \end{itemize}
   \end{frame}
   \begin{frame}
@@ -481,5 +489,76 @@
   \begin{frame}
     Phép đổi tên thường được dùng trong trường hợp sử dụng đến phép kết 
     hoặc có tính toán giữa các cột với nhau.
+  \end{frame}
+  \section{Các toán tử nâng cao}
+  \subsection{Phép kết}
+  \begin{frame}{Phép kết theta}
+    \textit{Định nghĩa}. Cho hai quan hệ $R$ và $S$, điều kiện so sánh $\theta$, kết quả của phép kết theta
+    $R \join[\theta] S$ là một quan hệ gồm những dòng thỏa mãn $\theta$ được chọn ra từ tích Đề-các $R \times S$.
+    Nói cách khác,
+    $$
+    R \join[\theta] S = \psig{\theta}{R \times S}
+    $$
+  \end{frame}
+  \begin{frame}
+    Do phép kết dùng để kết nối hai quan hệ với nhau, nên điều kiện so sánh thường là
+    $$\langle\text{tên cột bảng 1}\rangle\langle\text{phép so sánh}\rangle\langle\text{tên cột bảng 2}\rangle$$
+  \end{frame}
+  \begin{frame}
+    \begin{columns}[T]
+      \begin{column}{0.3\textwidth}
+        \centering $R$
+        \bigskip \\
+        \begin{tabular}{||c|c|c||}
+          \hline
+          \textbf{A} & \textbf{B} & \textbf{C}  \\[0.5ex] \hline\hline
+          \bullet & 2 & \bullet\\ \hline
+          \bullet & 5 & \bullet\\ \hline
+          \bullet & 8 & \bullet\\ \hline
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.2\textwidth}
+        \centering $S$
+        \bigskip \\
+        \begin{tabular}{||c|c||}
+          \hline
+          \textbf{D} & \textbf{E} \\[0.5ex] \hline\hline
+          3 & \bullet\\ \hline
+          6 & \bullet\\ \hline
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.5\textwidth}
+        \centering $R \join[B < D] S$
+        \medskip \\
+        \begin{tabular}{||c|c|c|c|c||}
+          \hline
+          \textbf{A} & \textbf{B} & \textbf{C} & \textbf{D} & \textbf{E}\\[0.5ex] \hline\hline
+          \bullet & 2 & \bullet & 3 & \bullet\\ \hline
+          \bullet & 2 & \bullet & 6 & \bullet\\ \hline
+          \bullet & 5 & \bullet & 6 & \bullet\\ \hline
+        \end{tabular}
+      \end{column}
+    \end{columns}
+  \end{frame}
+  \begin{frame}{Phép kết bằng}
+    \textit{Định nghĩa}. Phép kết bằng là phép kết có điều kiện so sánh là so sánh bằng.
+  \end{frame}
+  \begin{frame}{Phép kết tự nhiên}
+    \textit{Định nghĩa}. Phép kết tự nhiên là phép kết bằng trên những cột cùng tên giữa hai quan hệ.
+    Ký hiệu $R \join S$.
+  \end{frame}
+  \begin{frame}{Phép kết nửa}
+    \textit{Định nghĩa}. Phép kết nửa trái (phải) là phép kết tự nhiên nhưng kết quả không bao gồm
+    những cột của bảng trái (phải). Ký hiệu $R~⋉~S$ (trái), $R~⋊~S$ (phải).
+  \end{frame}
+  \begin{frame}{Phép phản kết}
+    \textit{Định nghĩa}. Kết quả của phép phản kết $R \rhd S$ là những dòng thuộc $R$ nhưng không tham gia
+    vào phép kết nửa trái $R~⋉~S$. Nói cách khác
+    $$
+    R \rhd S = R - R~⋉~S
+    $$
+  \end{frame}
+  \begin{frame}{Phép kết ngoài trái}
+    \textit{Định nghĩa}. Kết quả của phép kết ngoài trái $R~⟖~S$ là 
   \end{frame}
 \end{document}
