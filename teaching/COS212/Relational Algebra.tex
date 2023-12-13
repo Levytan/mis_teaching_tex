@@ -10,6 +10,7 @@
 \usepackage{fontspec}
 \usepackage{relsize}
 \usepackage{xparse}
+\usepackage{leftindex}
 
 \makeatletter
 \def\input@path{{../../theme/}}
@@ -17,7 +18,7 @@
 
 \usetheme[subsectionpage=progressbar]{mis}
 
-\setsansfont{Rosario}[Numbers=OldStyle]
+\setsansfont{Lato}[Numbers=OldStyle]
 \setmathfont{Asana Math}[Scale=MatchLowercase]
 \setmonofont{Consolas}[Scale=MatchLowercase]
 
@@ -558,7 +559,95 @@
     R \rhd S = R - R~⋉~S
     $$
   \end{frame}
+  \begin{frame}{Phép kết ngoài}
+    Có thể thấy phép kết tự nhiên chỉ giữ lại những bộ thỏa điều kiện kết.
+    Tuy nhiên, trong nhiều trường hợp, cần giữ lại những thông tin không được kết 
+    ở bảng trái hoặc bảng phải hoặc cả hai bảng. \\
+    Vì thế, người ta bổ sung thêm ba phép kết:
+    \begin{itemize}
+      \item Phép kết (ngoài) trái $R~⟕~S$.
+      \item Phép kết (ngoài) phải $R~⟖~S$.
+      \item Phép kết ngoài đầy đủ $R~⟗~S$
+    \end{itemize}
+  \end{frame}
   \begin{frame}{Phép kết ngoài trái}
-    \textit{Định nghĩa}. Kết quả của phép kết ngoài trái $R~⟖~S$ là 
+    \textit{Định nghĩa}. Kết quả của phép kết ngoài trái $R~⟕~S$ là một quan hệ bao gồm:
+    \begin{itemize}
+      \item Tất cả những dòng của phép kết tự nhiên $R \join S$.
+      \item Tích Đề-các giữa những dòng của phép phản kết $R \rhd S$ và một dòng trống (có cùng số cột với $S$). 
+    \end{itemize}
+    $$
+    R~⟕~S = (R \join S) \cup \left((R \rhd S) \times \{\langle\omega, \omega, \dots, \omega\rangle\}\right)
+    $$
+  \end{frame}
+  \begin{frame}
+    Có thể thấy phép kết ngoài trái $R~⟖~S$ giữ nguyên tất cả các dòng của quan hệ bên trái.
+  \end{frame}
+  \begin{frame}{Phép kết ngoài phải}
+    Chúng ta có thể định nghĩa phép kết ngoài phải tương tự như phép kết ngoài trái, 
+    và ta có công thức:
+    $$R~⟖~S = S~⟕~R$$
+  \end{frame}
+  \begin{frame}{Phép kết ngoài đầy đủ}
+    Cuối cùng, phép kết ngoài đầy đủ là phần hợp giữa phép kết ngoài trái và phép kết ngoài phải.
+    $$
+    R~⟗~S = (R~⟕~S) \cup (R~⟖~S)
+    $$
+  \end{frame}
+  \subsection{Phép chiếu mở rộng}
+  \begin{frame}
+    Người ta còn mở rộng phép chiếu bằng cách cho phép thực hiện tính toán trên cột (giữ nguyên tên),
+    hoặc giữa các cột với nhau (cần đặt tên cho cột kết quả)
+  \end{frame}
+  \subsection{Phép gom nhóm}
+  \begin{frame}
+    Các toán tử vừa được giới thiệu vẫn chưa đủ để trả lời các câu hỏi thống kê, 
+    vì thế, người ta bổ sung vào đại số quan hệ hai khái niệm mới là hàm gom nhóm và phép gom nhóm.
+  \end{frame}
+  \begin{frame}{Hàm gom nhóm}
+    Hàm gom nhóm là những hàm có đầu vào là một tập hợp các giá trị và đầu ra là một giá trị duy nhất.
+    Có năm hàm gom nhóm cơ bản:
+    \begin{itemize}
+      \item $\mathrm{sum}$: tính tổng tập hợp.
+      \item $\mathrm{count}$: đếm số lượng khác trống.
+      \item $\mathrm{avg}$: tính giá trị trung bình.
+      \item $\mathrm{max}$: tìm giá trị lớn nhất.
+      \item $\mathrm{min}$: tìm giá trị nhỏ nhất.
+    \end{itemize}
+  \end{frame}
+  \begin{frame}{Phép gom nhóm}
+    Cho quan hệ $R$, tập thuộc tính (của $R$) gom nhóm $G$ (có $m$ cột), và hàm gom nhóm $F$, 
+    kết quả của phép gom nhóm $\leftindex_{G}{\mathcal{G}}_{F(A)}(R)$ 
+    là một quan hệ có $m+1$ cột với:
+    \begin{itemize}
+      \item $m$ cột đầu là một bộ riêng biệt của $G$.
+      \item Cột cuối cùng là kết quả của hàm $F$ với đầu vào là những giá trị cột $A$ 
+      tương ứng với giá trị riêng biệt của $m$ cột trước.
+    \end{itemize}
+  \end{frame}
+  \begin{frame}
+    \begin{columns}[T]
+      \begin{column}{0.4\textwidth}
+        \centering $R$
+        \bigskip \\
+        \begin{tabular}{||c|c||}
+          \hline
+          $\textbf{A}$ & $\textbf{B}$ \\[0.5ex] \hline\hline
+          $\alpha$ & 1 \\ \hline
+          $\alpha$ & 2 \\ \hline
+          $\beta$ & 1 \\ \hline
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.6\textwidth}
+        \centering $\leftindex_{A}{\mathcal{G}}_{\mathrm{count}(B)} (R)$
+        \medskip \\
+        \begin{tabular}{||c|c||}
+          \hline
+          $\textbf{A}$ & $\mathrm{count}$ \\[0.5ex] \hline\hline
+          $\alpha$ & 2 \\ \hline
+          $\beta$ & 1 \\ \hline
+        \end{tabular}
+      \end{column}
+    \end{columns}
   \end{frame}
 \end{document}
