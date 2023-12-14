@@ -1084,7 +1084,8 @@
   \begin{frame}
     \uncover<1->{Tìm \textbf{mã đề án} có nhiều nhân viên tham gia nhất?}
     \begin{enumerate}
-      \item<2-> $T \leftarrow \leftindex_{\text{MãĐềÁn}}{\mathcal{G}}_{\text{SốLượng}/\mathrm{count}(\text{MãNv})}\text{(PHÂN CÔNG)}$
+      \item<2-> $T \leftarrow \leftindex_{\text{MãĐềÁn}}{\mathcal{G}}_{\mathrm{count}(\text{MãNv})}\text{(PHÂN CÔNG)}$
+      \item<3-> $\prho{\text{SốLượng}/\mathrm{count}}{T}$
       \item<3-> $U \leftarrow \psig{\text{SốLượng}\ =\ \mathrm{max}\text{(SốLượng)}}{T}$
       \item<4-> $\ppi{\text{MãĐềÁn}}{U}$
     \end{enumerate}
