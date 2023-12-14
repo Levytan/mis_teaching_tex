@@ -11,6 +11,7 @@
 \usepackage{relsize}
 \usepackage{xparse}
 \usepackage{leftindex}
+\usepackage[table]{xcolor}
 
 \makeatletter
 \def\input@path{{../../theme/}}
@@ -19,7 +20,7 @@
 \usetheme[subsectionpage=progressbar]{mis}
 
 \setsansfont{Lato}[Numbers=OldStyle]
-\setmathfont{Asana Math}[Scale=MatchLowercase]
+\setmathfont{Asana Math}[Scale=MatchLowercase, Style=Alternate]
 \setmonofont{Consolas}[Scale=MatchLowercase]
 
 \title{Đại số quan hệ}
@@ -52,6 +53,7 @@
     ~\mathlarger\bowtie_{#1}~
   }%
 }%
+\DeclareMathSymbol{\mhyphen}{\mathord}{AMSa}{"39}
 
 \begin{document}
   \begin{frame}
@@ -96,9 +98,10 @@
   \begin{frame}
     Để tiện cho việc theo dõi, chúng ta quy ước ký hiệu như sau:
     \begin{itemize}
-      \item Tên quan hệ sẽ được ghi bằng chữ in hoa, ví dụ $R$, $S$, $CUSTOMER$, \dots
-      \item Tên cột sẽ ghi bằng cách viết các từ dính liền nhau và ghi in hoa chữ cái đầu mỗi từ (viết kiểu Pascal), ví dụ
-      Age, CustomerId, \dots 
+      \item Tên quan hệ được viết in hoa toàn bộ: $R$, $S$, $CUSTOMER$, \dots 
+      \item Tên cột được viết dính liền và viết in hoa chữ cái đầu mỗi từ: Age, CustomerId, \dots
+      \item Cột $X$ của quan hệ $R$ sẽ được ký hiệu $R.X$ hoặc $R[X]$.
+      \item Một dòng trong quan hệ $\{\langle t_1, t_2, \dots, t_n\rangle\}$
     \end{itemize}
   \end{frame}
   \subsection{Các phép toán tập hợp}
@@ -107,7 +110,7 @@
     \begin{itemize}
       \item<2-> Phép hợp $R \cup S$.
       \item<2-> Phép giao $R \cap S$.
-      \item<2-> Phép trừ $R - S$, hoặc $R \setminus S$.
+      \item<2-> Phép trừ $R \setminus S$ hoặc $R - S$.
       \item<2-> Phép tích Đề-các $R \times S$.
     \end{itemize}
   \end{frame}
@@ -145,7 +148,7 @@
       \end{columns}
     \end{center}
   \end{frame}
-  \begin{frame}
+  \begin{frame}{Quy ước}
     Kết quả của $R \cup S$, $R \cap S$ và $R \setminus S$ là một quan hệ với tên cột là tên cột của $R$.
   \end{frame}
   \begin{frame}{Phép hợp}
@@ -157,7 +160,7 @@
       \begin{column}{0.3\textwidth}
         \centering $R$
         \medskip \\
-        \begin{tabular}{||c|c||}
+        \begin{tabular}{|c|c|}
           \hline
           $\textbf{A}_0$ & $\textbf{A}_1$ \\[0.5ex] \hline\hline
           $\alpha$ & 1 \\ \hline
@@ -168,7 +171,7 @@
       \begin{column}{0.3\textwidth}
         \centering $S$
         \medskip \\
-        \begin{tabular}{||c|c||}
+        \begin{tabular}{|c|c|}
           \hline
           $\textbf{B}_0$ & $\textbf{B}_1$ \\[0.5ex] \hline\hline
           $\alpha$ & 2 \\ \hline
@@ -178,7 +181,7 @@
       \begin{column}{0.3\textwidth}
         \centering $R \cup S$
         \medskip \\
-        \begin{tabular}{||c|c||}
+        \begin{tabular}{|c|c|}
           \hline
           $\textbf{A}_0$ & $\textbf{A}_1$ \\[0.5ex] \hline\hline
           $\alpha$ & 1 \\ \hline
@@ -198,7 +201,7 @@
       \begin{column}{0.3\textwidth}
         \centering $R$
         \medskip \\
-        \begin{tabular}{||c|c||}
+        \begin{tabular}{|c|c|}
           \hline
           $\textbf{A}_0$ & $\textbf{A}_1$ \\[0.5ex] \hline\hline
           $\alpha$ & 1 \\ \hline
@@ -209,7 +212,7 @@
       \begin{column}{0.3\textwidth}
         \centering $S$
         \medskip \\
-        \begin{tabular}{||c|c||}
+        \begin{tabular}{|c|c|}
           \hline
           $\textbf{B}_0$ & $\textbf{B}_1$ \\[0.5ex] \hline\hline
           $\alpha$ & 2 \\ \hline
@@ -219,7 +222,7 @@
       \begin{column}{0.3\textwidth}
         \centering $R \cap S$
         \medskip \\
-        \begin{tabular}{||c|c||}
+        \begin{tabular}{|c|c|}
           \hline
           $\textbf{A}_0$ & $\textbf{A}_1$ \\[0.5ex] \hline\hline
           $\alpha$ & 2 \\ \hline
@@ -237,7 +240,7 @@
       \begin{column}{0.3\textwidth}
         \centering $R$
         \medskip \\
-        \begin{tabular}{||c|c||}
+        \begin{tabular}{|c|c|}
           \hline
           $\textbf{A}_0$ & $\textbf{A}_1$ \\[0.5ex] \hline\hline
           $\alpha$ & 1 \\ \hline
@@ -248,7 +251,7 @@
       \begin{column}{0.3\textwidth}
         \centering $S$
         \medskip \\
-        \begin{tabular}{||c|c||}
+        \begin{tabular}{|c|c|}
           \hline
           $\textbf{B}_0$ & $\textbf{B}_1$ \\[0.5ex] \hline\hline
           $\alpha$ & 2 \\ \hline
@@ -258,7 +261,7 @@
       \begin{column}{0.3\textwidth}
         \centering $R \setminus S$
         \medskip \\
-        \begin{tabular}{||c|c||}
+        \begin{tabular}{|c|c|}
           \hline
           $\textbf{A}_0$ & $\textbf{A}_1$ \\[0.5ex] \hline\hline
           $\alpha$ & 1 \\ \hline
@@ -278,7 +281,7 @@
       \begin{column}{0.25\textwidth}
         \centering $R$
         \medskip \\
-        \begin{tabular}{||c|c||}
+        \begin{tabular}{|c|c|}
           \hline
           $\textbf{A}_0$ & $\textbf{A}_1$ \\[0.5ex] \hline\hline
           $\alpha$ & 1 \\ \hline
@@ -289,7 +292,7 @@
       \begin{column}{0.25\textwidth}
         \centering $S$
         \medskip \\
-        \begin{tabular}{||c|c||}
+        \begin{tabular}{|c|c|}
           \hline
           $\textbf{B}_0$ & $\textbf{B}_1$ \\[0.5ex] \hline\hline
           $\gamma$ & 2 \\ \hline
@@ -299,7 +302,7 @@
       \begin{column}{0.4\textwidth}
         \centering $R \times S$
         \medskip \\
-        \begin{tabular}{||c|c|c|c||}
+        \begin{tabular}{|c|c|c|c|}
           \hline
           $\textbf{A}_0$ & $\textbf{A}_1$ & $\textbf{B}_0$ & $\textbf{B}_1$\\[0.5ex] \hline\hline
           $\alpha$ & 1 & $\gamma$ & 2 \\ \hline
@@ -335,6 +338,18 @@
       \end{itemize}
     }
   \end{frame}
+  \begin{frame}{Tính chất (tiếp)}
+    Phép tích Đề-các không có tính giao hoán
+    $$R \times S \neq S \times R$$
+  \end{frame}
+  \begin{frame}{Tính chất (tiếp)}
+    Phép tích Đề-các có tính phân phối đối với phép hợp, phép giao và phép trừ
+    \begin{gather*}
+      R \times (S \cup P) = (R \times S) \cup (R \times P) \\
+      R \times (S \cap P) = (R \times S) \cap (R \times P) \\
+      R \times (S \setminus P) = (R \times S) \setminus (R \times P)
+    \end{gather*}
+  \end{frame}
   \subsection{Các toán tử quan hệ}
   \begin{frame}{Phép chiếu}
     \textit{Định nghĩa}. Cho quan hệ $R$ và một tập hợp $X$ gồm các cột có trong $R$, 
@@ -346,7 +361,7 @@
       \begin{column}{0.4\textwidth}
         \centering $R$
         \bigskip \\
-        \begin{tabular}{||c|c|c||}
+        \begin{tabular}{|c|c|c|}
           \hline
           \textbf{A} & \textbf{B} & \textbf{C}  \\[0.5ex] \hline\hline
           $\alpha$ & 1 & a\\ \hline
@@ -357,7 +372,7 @@
       \begin{column}{0.25\textwidth}
         \centering $\ppi{\text{A, B}}{R}$
         \medskip \\
-        \begin{tabular}{||c|c||}
+        \begin{tabular}{|c|c|}
           \hline
           \textbf{A} & \textbf{B} \\[0.5ex] \hline\hline
           $\alpha$ & 1\\ \hline
@@ -368,7 +383,7 @@
       \begin{column}{0.25\textwidth}
         \centering $\ppi{\text{A, C}}{R}$
         \medskip \\
-        \begin{tabular}{||c|c||}
+        \begin{tabular}{|c|c|}
           \hline
           \textbf{A} & \textbf{C} \\[0.5ex] \hline\hline
           $\alpha$ & a\\ \hline
@@ -377,15 +392,30 @@
       \end{column}
     \end{columns}
   \end{frame}
+  \begin{frame}{Tính chất phép chiếu}
+    Phép chiếu có tính lũy đẳng, nghĩa là
+    $$\ppi{X}{\ppi{X}{R}} = \ppi{X}{R}$$
+  \end{frame}
+  \begin{frame}{Tính chất phép chiếu (tiếp)}
+    Ngoài ra, một chuỗi các \textit{phép chiếu hợp lệ} có cùng kết quả với phép chiếu ngoài cùng
+    $$\ppi{Y}{\ppi{X}{R}} = \ppi{Y}{R}$$
+    Phép chiếu hợp lệ là phép chiếu chỉ lấy ra những cột đang có trong quan hệ.
+  \end{frame}
+  \begin{frame}{Tính chất phép chiếu (tiếp)}
+    Phép chiếu có tính phân phối đối với phép hợp, nghĩa là
+    $$\ppi{X}{R \cup S} = \ppi{X}{R} \cup \ppi{X}{S}$$
+    Tuy nhiên, phép chiếu lại không có tính phân phối với phép giao và phép trừ.
+  \end{frame}
   \begin{frame}{Phép chọn}
   \textit{Định nghĩa}. Cho quan hệ $R$ và điều kiện so sánh $\theta$, kết quả của 
   phép chọn $\psig{\theta}{R}$ là một quan hệ gồm \textbf{các dòng} mà điều kiện $\theta$ là đúng.
   \end{frame}
   \begin{frame}{Điều kiện so sánh}
-    \uncover<1->{Điều kiện so sánh gồm hai dạng:}
+    \uncover<1->{Điều kiện so sánh gồm ba dạng:}
     \begin{itemize}
       \item<2-> $\langle\text{tên cột 1}\rangle\langle\text{phép so sánh}\rangle\langle\text{tên cột 2}\rangle$.
       \item<3-> $\langle\text{tên cột}\rangle\langle\text{phép so sánh}\rangle\langle\text{giá trị vô hướng}\rangle$.
+      \item<4-> $\langle\text{tên cột}\rangle~\text{có (không) phải trống?}$
     \end{itemize}
   \end{frame}
   \begin{frame}
@@ -409,7 +439,7 @@
       \begin{column}{0.3\textwidth}
         \centering $R$
         \bigskip \\
-        \begin{tabular}{||c|c|c||}
+        \begin{tabular}{|c|c|c|}
           \hline
           \textbf{A} & \textbf{B} & \textbf{C}  \\[0.5ex] \hline\hline
           $\alpha$ & 1 & a\\ \hline
@@ -420,7 +450,7 @@
       \begin{column}{0.3\textwidth}
         \centering $\psig{\text{A} = \alpha}{R}$
         \medskip \\
-        \begin{tabular}{||c|c|c||}
+        \begin{tabular}{|c|c|c|}
           \hline
           \textbf{A} & \textbf{B} & \textbf{C} \\[0.5ex] \hline\hline
           $\alpha$ & 1 & a\\ \hline
@@ -428,9 +458,9 @@
         \end{tabular}
       \end{column}
       \begin{column}{0.3\textwidth}
-        \centering $\psig{\text{A} = \alpha \wedge \text{B} < 2}{R}$
+        \centering $\psig{\text{A} = \alpha \vee \text{B} < 2}{R}$
         \medskip \\
-        \begin{tabular}{||c|c|c||}
+        \begin{tabular}{|c|c|c|}
           \hline
           \textbf{A} & \textbf{B} & \textbf{C} \\[0.5ex] \hline\hline
           $\alpha$ & 1 & a\\ \hline
@@ -447,11 +477,21 @@
       \item<4-> $\psig{\neg \varphi}{R} = R \setminus \psig{\varphi}{R}$
     \end{itemize}
   \end{frame}
+  \begin{frame}{Tính chất phép chọn (tiếp)}
+    Phép chọn có tính phân phối đối với phép hợp, phép giao và phép trừ.
+    \begin{itemize}
+      \item $\psig{\theta}{R \cup S} = \psig{\theta}{R} \cup \psig{\theta}{S}$
+      \item $\psig{\theta}{R \cup S} = \psig{\theta}{R} \cup \psig{\theta}{S}$
+      \item $\psig{\theta}{R \setminus S} = \psig{\theta}{R} \setminus \psig{\theta}{S}$
+    \end{itemize}
+  \end{frame}
   \begin{frame}
-    \textit{Lưu ý}. Về cơ bản, giữa phép chọn và phép chiếu không có tính giao hoán, nghĩa là
+    \textit{Lưu ý}. Về cơ bản, giữa phép chọn và phép chiếu \textbf{không có tính giao hoán}, nghĩa là
     $$
     \ppi{X}{\psig{\theta}{R}} \neq \psig{\theta}{\ppi{X}{R}}
     $$
+    Dấu bằng chỉ xảy ra nếu như các cột trong điều kiện so sánh $\theta$ là một tập con 
+    của các cột chiếu $X$.
   \end{frame}
   \begin{frame}{Phép gán}
     \uncover<1->{Để tiện cho việc theo dõi, người ta thường tách một biểu thức quan hệ ra thành nhiều bước ngắn,
@@ -510,7 +550,7 @@
       \begin{column}{0.3\textwidth}
         \centering $R$
         \bigskip \\
-        \begin{tabular}{||c|c|c||}
+        \begin{tabular}{|c|c|c|}
           \hline
           \textbf{A} & \textbf{B} & \textbf{C}  \\[0.5ex] \hline\hline
           \bullet & 2 & \bullet\\ \hline
@@ -521,7 +561,7 @@
       \begin{column}{0.2\textwidth}
         \centering $S$
         \bigskip \\
-        \begin{tabular}{||c|c||}
+        \begin{tabular}{|c|c|}
           \hline
           \textbf{D} & \textbf{E} \\[0.5ex] \hline\hline
           3 & \bullet\\ \hline
@@ -531,7 +571,7 @@
       \begin{column}{0.5\textwidth}
         \centering $R \join[B < D] S$
         \medskip \\
-        \begin{tabular}{||c|c|c|c|c||}
+        \begin{tabular}{|c|c|c|c|c|}
           \hline
           \textbf{A} & \textbf{B} & \textbf{C} & \textbf{D} & \textbf{E}\\[0.5ex] \hline\hline
           \bullet & 2 & \bullet & 3 & \bullet\\ \hline
@@ -546,11 +586,88 @@
   \end{frame}
   \begin{frame}{Phép kết tự nhiên}
     \textit{Định nghĩa}. Phép kết tự nhiên là phép kết bằng trên những cột cùng tên giữa hai quan hệ.
-    Ký hiệu $R \join S$.
+    Ký hiệu $R \join S$. Ngoài ra, trong kết quả của phép kết tự nhiên, các cột cùng tên giữa hai quan hệ
+    chỉ xuất hiện một lần.
+  \end{frame}
+  \begin{frame}
+    Cho hai quan hệ $R(A_1, A_2, \dots,A_n, C_1, C_2, \dots, C_k)$ và $S(B_1, B_2, \dots, B_m, C_1, C_2, \dots, C_k)$,
+    khi đó
+    $$
+    R \join S = \ppi{X}{\psig{R.C_1 = S.C_1,\ \dots,\ R.C_k = S.C_k}{R \times S}}
+    $$
+    với $X = \{A_1, A_2, \dots,A_n, B_1, B_2, \dots, B_m, C_1, C_2, \dots, C_k\}$
+  \end{frame}
+  \begin{frame}
+    \begin{columns}[T]
+      \begin{column}{0.3\textwidth}
+        \centering $R$
+        \medskip \\
+        \begin{tabular}{|c|c|c|}
+          \hline
+          \textbf{A} & \textbf{B} & \textbf{C}  \\[0.5ex] \hline\hline
+          $\alpha$ & 2 & a\\ \hline
+          $\beta$ & 5 & a\\ \hline
+          $\gamma$ & 8 & e\\ \hline
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.3\textwidth}
+        \centering $S$
+        \medskip \\
+        \begin{tabular}{|c|c|}
+          \hline
+          \textbf{A} & \textbf{E} \\[0.5ex] \hline\hline
+          $\alpha$ & x\\ \hline
+          $\lambda$ & y\\ \hline
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.3\textwidth}
+        \centering $R \join S$
+        \medskip \\
+        \begin{tabular}{|c|c|c|c|}
+          \hline
+          \textbf{A} & \textbf{B} & \textbf{C} & \textbf{E}\\[0.5ex] \hline\hline
+          $\alpha$ & 2 & a & x \\ \hline
+        \end{tabular}
+      \end{column}
+    \end{columns}
   \end{frame}
   \begin{frame}{Phép kết nửa}
     \textit{Định nghĩa}. Phép kết nửa trái (phải) là phép kết tự nhiên nhưng kết quả không bao gồm
     những cột của bảng trái (phải). Ký hiệu $R~⋉~S$ (trái), $R~⋊~S$ (phải).
+  \end{frame}
+  \begin{frame}
+    \begin{columns}[T]
+      \begin{column}{0.3\textwidth}
+        \centering $R$
+        \medskip \\
+        \begin{tabular}{|c|c|c|}
+          \hline
+          \textbf{A} & \textbf{B} & \textbf{C}  \\[0.5ex] \hline\hline
+          $\alpha$ & 2 & a\\ \hline
+          $\beta$ & 5 & a\\ \hline
+          $\gamma$ & 8 & e\\ \hline
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.3\textwidth}
+        \centering $S$
+        \medskip \\
+        \begin{tabular}{|c|c|}
+          \hline
+          \textbf{A} & \textbf{E} \\[0.5ex] \hline\hline
+          $\alpha$ & x\\ \hline
+          $\lambda$ & y\\ \hline
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.3\textwidth}
+        \centering $R~⋉~S$
+        \medskip \\
+        \begin{tabular}{|c|c|c|}
+          \hline
+          \textbf{A} & \textbf{B} & \textbf{C}\\[0.5ex] \hline\hline
+          $\alpha$ & 2 & a \\ \hline
+        \end{tabular}
+      \end{column}
+    \end{columns}
   \end{frame}
   \begin{frame}{Phép phản kết}
     \textit{Định nghĩa}. Kết quả của phép phản kết $R \rhd S$ là những dòng thuộc $R$ nhưng không tham gia
@@ -558,6 +675,41 @@
     $$
     R \rhd S = R - R~⋉~S
     $$
+  \end{frame}
+  \begin{frame}
+    \begin{columns}[T]
+      \begin{column}{0.3\textwidth}
+        \centering $R$
+        \medskip \\
+        \begin{tabular}{|c|c|c|}
+          \hline
+          \textbf{A} & \textbf{B} & \textbf{C}  \\[0.5ex] \hline\hline
+          $\alpha$ & 2 & a\\ \hline
+          $\beta$ & 5 & a\\ \hline
+          $\gamma$ & 8 & e\\ \hline
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.3\textwidth}
+        \centering $S$
+        \medskip \\
+        \begin{tabular}{|c|c|}
+          \hline
+          \textbf{A} & \textbf{E} \\[0.5ex] \hline\hline
+          $\alpha$ & x\\ \hline
+          $\lambda$ & y\\ \hline
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.3\textwidth}
+        \centering $R \rhd S$
+        \medskip \\
+        \begin{tabular}{|c|c|c|}
+          \hline
+          \textbf{A} & \textbf{B} & \textbf{C}\\[0.5ex] \hline\hline
+          $\beta$ & 5 & a\\ \hline
+          $\gamma$ & 8 & e\\ \hline
+        \end{tabular}
+      \end{column}
+    \end{columns}
   \end{frame}
   \begin{frame}{Phép kết ngoài}
     Có thể thấy phép kết tự nhiên chỉ giữ lại những bộ thỏa điều kiện kết.
@@ -574,7 +726,7 @@
     \textit{Định nghĩa}. Kết quả của phép kết ngoài trái $R~⟕~S$ là một quan hệ bao gồm:
     \begin{itemize}
       \item Tất cả những dòng của phép kết tự nhiên $R \join S$.
-      \item Tích Đề-các giữa những dòng của phép phản kết $R \rhd S$ và một dòng trống (có cùng số cột với $S$). 
+      \item Tích Đề-các giữa những dòng của phép phản kết $R \rhd S$ và một dòng trống. 
     \end{itemize}
     $$
     R~⟕~S = (R \join S) \cup \left((R \rhd S) \times \{\langle\omega, \omega, \dots, \omega\rangle\}\right)
@@ -583,10 +735,81 @@
   \begin{frame}
     Có thể thấy phép kết ngoài trái $R~⟖~S$ giữ nguyên tất cả các dòng của quan hệ bên trái.
   \end{frame}
+  \begin{frame}
+    \begin{columns}[T]
+      \begin{column}{0.3\textwidth}
+        \centering $R$
+        \medskip \\
+        \begin{tabular}{|c|c|c|}
+          \hline
+          \textbf{A} & \textbf{B} & \textbf{C}  \\[0.5ex] \hline\hline
+          $\alpha$ & 2 & a\\ \hline
+          $\beta$ & 5 & a\\ \hline
+          $\gamma$ & 8 & e\\ \hline
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.3\textwidth}
+        \centering $S$
+        \medskip \\
+        \begin{tabular}{|c|c|}
+          \hline
+          \textbf{A} & \textbf{E} \\[0.5ex] \hline\hline
+          $\alpha$ & x\\ \hline
+          $\lambda$ & y\\ \hline
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.3\textwidth}
+        \centering $R~⟕~S$
+        \medskip \\
+        \begin{tabular}{|c|c|c|c|}
+          \hline
+          \textbf{A} & \textbf{B} & \textbf{C} & \textbf{E}\\[0.5ex] \hline\hline
+          $\alpha$ & 2 & a & x\\ \hline
+          $\beta$ & 5 & a & \cellcolor{blue!25}$\omega$ \\ \hline
+          $\gamma$ & 8 & e & \cellcolor{blue!25}$\omega$ \\ \hline
+        \end{tabular}
+      \end{column}
+    \end{columns}
+  \end{frame}
   \begin{frame}{Phép kết ngoài phải}
     Chúng ta có thể định nghĩa phép kết ngoài phải tương tự như phép kết ngoài trái, 
     và ta có công thức:
     $$R~⟖~S = S~⟕~R$$
+  \end{frame}
+  \begin{frame}
+    \begin{columns}[T]
+      \begin{column}{0.3\textwidth}
+        \centering $R$
+        \medskip \\
+        \begin{tabular}{|c|c|c|}
+          \hline
+          \textbf{A} & \textbf{B} & \textbf{C}  \\[0.5ex] \hline\hline
+          $\alpha$ & 2 & a\\ \hline
+          $\beta$ & 5 & a\\ \hline
+          $\gamma$ & 8 & e\\ \hline
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.3\textwidth}
+        \centering $S$
+        \medskip \\
+        \begin{tabular}{|c|c|}
+          \hline
+          \textbf{A} & \textbf{E} \\[0.5ex] \hline\hline
+          $\alpha$ & x\\ \hline
+          $\lambda$ & y\\ \hline
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.3\textwidth}
+        \centering $R~⟖~S$
+        \medskip \\
+        \begin{tabular}{|c|c|c|c|}
+          \hline
+          \textbf{A} & \textbf{B} & \textbf{C} & \textbf{E}\\[0.5ex] \hline\hline
+          $\alpha$ & 2 & a & x\\ \hline
+          $\lambda$ & \cellcolor{blue!25}$\omega$ & \cellcolor{blue!25}$\omega$ & y \\ \hline
+        \end{tabular}
+      \end{column}
+    \end{columns}
   \end{frame}
   \begin{frame}{Phép kết ngoài đầy đủ}
     Cuối cùng, phép kết ngoài đầy đủ là phần hợp giữa phép kết ngoài trái và phép kết ngoài phải.
@@ -594,35 +817,164 @@
     R~⟗~S = (R~⟕~S) \cup (R~⟖~S)
     $$
   \end{frame}
+  \begin{frame}
+    \begin{columns}[T]
+      \begin{column}{0.3\textwidth}
+        \centering $R$
+        \medskip \\
+        \begin{tabular}{|c|c|c|}
+          \hline
+          \textbf{A} & \textbf{B} & \textbf{C}  \\[0.5ex] \hline\hline
+          $\alpha$ & 2 & a\\ \hline
+          $\beta$ & 5 & a\\ \hline
+          $\gamma$ & 8 & e\\ \hline
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.3\textwidth}
+        \centering $S$
+        \medskip \\
+        \begin{tabular}{|c|c|}
+          \hline
+          \textbf{A} & \textbf{E} \\[0.5ex] \hline\hline
+          $\alpha$ & x\\ \hline
+          $\lambda$ & y\\ \hline
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.3\textwidth}
+        \centering $R~⟗~S$
+        \medskip \\
+        \begin{tabular}{|c|c|c|c|}
+          \hline
+          \textbf{A} & \textbf{B} & \textbf{C} & \textbf{E}\\[0.5ex] \hline\hline
+          $\alpha$ & 2 & a & x\\ \hline
+          $\beta$ & 5 & a & \cellcolor{blue!25}$\omega$ \\ \hline
+          $\gamma$ & 8 & e & \cellcolor{blue!25}$\omega$ \\ \hline
+          $\lambda$ & \cellcolor{blue!25}$\omega$ & \cellcolor{blue!25}$\omega$ & y \\ \hline
+        \end{tabular}
+      \end{column}
+    \end{columns}
+  \end{frame}
+  \subsection{Phép chia}
+  \begin{frame}{Phép chia}
+    \textit{Định nghĩa}. Cho hai quan hệ $R$ và $S$, kết quả của phép chia $R \div S$ là 
+    quan hệ $T$ sao cho tất cả các dòng của $T \times S$ (tích Đề-các) đều là dòng của $R$.
+  \end{frame}
+  \begin{frame}
+    Từ định nghĩa trên có thể thấy, để $R$ có thể chia được cho $S$ 
+    thì tất cả các cột của $S$ phải là cột của $R$. Khi đó
+    $$
+    R \div S = \ppi{X \setminus Y}{R} \setminus \ppi{X \setminus Y}{{\ppi{X \setminus Y}{R} \times S} \setminus R}
+    $$
+    trong đó, $X$, $Y$ lần lượt là tập hợp tất cả cột của $R$, $S$.
+  \end{frame}
+  \begin{frame}
+    \begin{columns}[T]
+      \begin{column}{0.3\textwidth}
+        \centering $R$
+        \medskip \\
+        \begin{tabular}{|c|c|c|}
+          \hline
+          \textbf{A} & \textbf{B} & \textbf{C}\\[0.5ex] \hline\hline
+          \rowcolor{blue!25}
+          1 & 2 & 2\\ \hline
+          \rowcolor{blue!25}
+          1 & 2 & 6\\ \hline
+          4 & 2 & 2\\ \hline
+          4 & 5 & 6\\ \hline
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.2\textwidth}
+        \centering $S$
+        \medskip \\
+        \begin{tabular}{|c|}
+          \hline
+          \textbf{C} \\[0.5ex] \hline\hline
+          2\\ \hline
+          6\\ \hline          
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.3\textwidth}
+        \centering $R \div S$
+        \medskip \\
+        \begin{tabular}{|c|c|}
+          \hline
+          \textbf{A} & \textbf{B} \\[0.5ex] \hline\hline
+          1 & 2\\ \hline
+        \end{tabular}
+      \end{column}
+    \end{columns}
+  \end{frame}
+  \begin{frame}
+    Phép chia thường được dùng trả lời cho câu hỏi `Tìm tất cả X đã tham gia tất cả Y?'
+  \end{frame}
   \subsection{Phép chiếu mở rộng}
   \begin{frame}
-    Người ta còn mở rộng phép chiếu bằng cách cho phép thực hiện tính toán trên cột (giữ nguyên tên),
-    hoặc giữa các cột với nhau (cần đặt tên cho cột kết quả)
+    Người ta còn mở rộng phép chiếu bằng cách cho phép thực hiện tính toán trên cột,
+    hoặc giữa các cột với nhau. \textit{Lưu ý}: cần đặt tên cho những cột là kết quả của việc tính toán.
+  \end{frame}
+  \begin{frame}
+    \begin{columns}[T]
+      \begin{column}{0.3\textwidth}
+        \centering $R$
+        \bigskip \\
+        \begin{tabular}{|c|c|c|}
+          \hline
+          \textbf{A} & \textbf{B} & \textbf{C}  \\[0.5ex] \hline\hline
+          $\alpha$ & 1 & 1\\ \hline
+          $\alpha$ & 2 & 2\\ \hline
+          $\beta$ & 1 & 3\\ \hline
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.3\textwidth}
+        \centering $\ppi{\text{A, B+10}}{R}$
+        \medskip \\
+        \begin{tabular}{|c|c|}
+          \hline
+          \textbf{A} & \textbf{B} \\[0.5ex] \hline\hline
+          $\alpha$ & 11\\ \hline
+          $\alpha$ & 12\\ \hline
+          $\beta$ & 11\\ \hline
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.3\textwidth}
+        \centering $\ppi{\text{A, D/(B\times C)}}{R}$
+        \medskip \\
+        \begin{tabular}{|c|c|}
+          \hline
+          \textbf{A} & \textbf{D} \\[0.5ex] \hline\hline
+          $\alpha$ & 1\\ \hline
+          $\alpha$ & 4\\ \hline
+          $\beta$ & 3\\ \hline
+        \end{tabular}
+      \end{column}
+    \end{columns}
   \end{frame}
   \subsection{Phép gom nhóm}
   \begin{frame}
     Các toán tử vừa được giới thiệu vẫn chưa đủ để trả lời các câu hỏi thống kê, 
-    vì thế, người ta bổ sung vào đại số quan hệ hai khái niệm mới là hàm gom nhóm và phép gom nhóm.
+    vì thế, người ta bổ sung vào đại số quan hệ hai khái niệm mới là 
+    \textbf{hàm gom nhóm} và \textbf{phép gom nhóm}.
   \end{frame}
   \begin{frame}{Hàm gom nhóm}
     Hàm gom nhóm là những hàm có đầu vào là một tập hợp các giá trị và đầu ra là một giá trị duy nhất.
-    Có năm hàm gom nhóm cơ bản:
+    Có các hàm gom nhóm cơ bản:
     \begin{itemize}
       \item $\mathrm{sum}$: tính tổng tập hợp.
       \item $\mathrm{count}$: đếm số lượng khác trống.
       \item $\mathrm{avg}$: tính giá trị trung bình.
       \item $\mathrm{max}$: tìm giá trị lớn nhất.
       \item $\mathrm{min}$: tìm giá trị nhỏ nhất.
+      \item $\mathrm{count\mhyphen distinct}$: đếm số lượng giá trị khác nhau và khác trống.
     \end{itemize}
   \end{frame}
-  \begin{frame}{Phép gom nhóm}
-    Cho quan hệ $R$, tập thuộc tính (của $R$) gom nhóm $G$ (có $m$ cột), và hàm gom nhóm $F$, 
+  \begin{frame}{Phép gom nhóm cơ bản}
+    Cho quan hệ $R$, một cột gom nhóm $G$, và một hàm gom nhóm $F$, 
     kết quả của phép gom nhóm $\leftindex_{G}{\mathcal{G}}_{F(A)}(R)$ 
-    là một quan hệ có $m+1$ cột với:
+    là một quan hệ có hai cột với:
     \begin{itemize}
-      \item $m$ cột đầu là một bộ riêng biệt của $G$.
-      \item Cột cuối cùng là kết quả của hàm $F$ với đầu vào là những giá trị cột $A$ 
-      tương ứng với giá trị riêng biệt của $m$ cột trước.
+      \item Cột thứ nhất là một giá trị riêng biệt của $G$.
+      \item Cột thứ hai là kết quả của hàm $F$ với đầu vào là những giá trị cột $A$ 
+      tương ứng với giá trị riêng biệt của cột thứ nhất.
     \end{itemize}
   \end{frame}
   \begin{frame}
@@ -630,7 +982,7 @@
       \begin{column}{0.4\textwidth}
         \centering $R$
         \bigskip \\
-        \begin{tabular}{||c|c||}
+        \begin{tabular}{|c|c|}
           \hline
           $\textbf{A}$ & $\textbf{B}$ \\[0.5ex] \hline\hline
           $\alpha$ & 1 \\ \hline
@@ -641,7 +993,7 @@
       \begin{column}{0.6\textwidth}
         \centering $\leftindex_{A}{\mathcal{G}}_{\mathrm{count}(B)} (R)$
         \medskip \\
-        \begin{tabular}{||c|c||}
+        \begin{tabular}{|c|c|}
           \hline
           $\textbf{A}$ & $\mathrm{count}$ \\[0.5ex] \hline\hline
           $\alpha$ & 2 \\ \hline
@@ -649,5 +1001,92 @@
         \end{tabular}
       \end{column}
     \end{columns}
+  \end{frame}
+  \begin{frame}{Phép gom nhóm mở rộng}
+    Có thể mở rộng phép gom nhóm cho nhiều cột $G_1$, $G_2$, \dots, $G_n$ và 
+    nhiều hàm gom nhóm $F_1$, $F_2$, \dots, $F_m$, ký hiệu
+    $$
+    \leftindex_{G_1,\ G_2,\ \dots,\ G_n}{\mathcal{G}}_{F_1(A_1),\ F_2(A_2),\ \dots,\ F_m(A_m)} (R)
+    $$
+  \end{frame}
+  \begin{frame}
+    \textit{Lưu ý}:
+    \begin{itemize}
+      \item Các cột $A_1$, $A_2$, \dots, $A_m$ không nhất thiết phải khác nhau.
+      \item Cần đặt tên cho $F_1(A_1),\ F_2(A_2),\ \dots,\ F_m(A_m)$.
+    \end{itemize} 
+  \end{frame}
+  \begin{frame}
+    \begin{columns}[T]
+      \begin{column}{0.4\textwidth}
+        \centering $R$
+        \bigskip \\
+        \begin{tabular}{|c|c|c|}
+          \hline
+          \textbf{A} & \textbf{B} & \textbf{C} \\[0.5ex] \hline\hline
+          $\alpha$ & 1 & 7\\ \hline
+          $\alpha$ & 2 & 4\\ \hline
+          $\beta$ & 1 & 2\\ \hline
+          $\beta$ & 1 & 5\\ \hline
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.6\textwidth}
+        \centering $\leftindex_{A,\ B}{\mathcal{G}}_{\mathrm{count}(C),\ \mathrm{sum}(C)} (R)$
+        \medskip \\
+        \begin{tabular}{|c|c|c|c|}
+          \hline
+          \textbf{A} & \textbf{B} & $\mathrm{count}$ & $\mathrm{sum}$ \\[0.5ex] \hline\hline
+          $\alpha$ & 1 & 1 & 7\\ \hline
+          $\alpha$ & 2 & 1 & 4\\ \hline
+          $\beta$ & 1 & 2 & 7\\ \hline
+        \end{tabular}
+      \end{column}
+    \end{columns}
+  \end{frame}
+  \section{Ví dụ}
+  \begin{frame}
+    Cho cơ sở dữ liệu như hình:
+    \begin{figure}
+      \includegraphics[width=0.9\textwidth]{COS212/schema.png}
+    \end{figure}
+  \end{frame}
+  \begin{frame}
+    \uncover<1->{Tìm \textbf{mã nhân viên} không tham gia đề án nào?}
+    \begin{enumerate}
+      \item<2-> $T \leftarrow \ppi{\text{MãNv}}{\text{NHÂN VIÊN}}$
+      \item<3-> $U \leftarrow \ppi{\text{MãNv}}{\text{PHÂN CÔNG}}$      
+      \item<4-> $T \setminus U$
+    \end{enumerate}
+  \end{frame}
+  \begin{frame}
+    \uncover<1->{Tìm \textbf{mã nhân viên} được phân công tham gia đề án có mã số `TH01' hoặc đề án có mã số `TH02'?}
+    \begin{enumerate}
+      \item<2-> $T \leftarrow \psig{\text{MãĐềÁn}\ =\ \text{`TH01'} ~\vee~ \text{MãĐềÁn}\ =\ \text{`TH02'}}{\text{PHÂN CÔNG}}$
+      \item<3-> $\ppi{\text{MãNv}}{T}$
+    \end{enumerate}
+  \end{frame}
+  \begin{frame}
+    \uncover<1->{Tìm \textbf{tên nhân viên} được phân công tham gia đề án có mã số `TH03'?}
+    \begin{enumerate}
+      \item<2-> $T \leftarrow \psig{\text{MãĐềÁn}\ =\ \text{`TH03'}}{\text{PHÂN CÔNG}}$
+      \item<3-> $U \leftarrow \ppi{\text{MãNv}}{T}$
+      \item<4-> $\ppi{\text{HọTên}}{U \join \text{NHÂN VIÊN}}$
+    \end{enumerate}
+  \end{frame}
+  \begin{frame}
+    \uncover<1->{Tìm \textbf{mã nhân viên} tham gia tất cả các đề án?}
+    \begin{enumerate}
+      \item<2-> $T \leftarrow \ppi{\text{MãNv, MãĐềÁn}}{\text{PHÂN CÔNG}}$
+      \item<3-> $U \leftarrow \ppi{\text{MãĐềÁn}}{\text{ĐỀ ÁN}}$
+      \item<4-> $T \div U$
+    \end{enumerate}
+  \end{frame}
+  \begin{frame}
+    \uncover<1->{Tìm \textbf{mã đề án} có nhiều nhân viên tham gia nhất?}
+    \begin{enumerate}
+      \item<2-> $T \leftarrow \leftindex_{\text{MãĐềÁn}}{\mathcal{G}}_{\text{SốLượng}/\mathrm{count}(\text{MãNv})}\text{(PHÂN CÔNG)}$
+      \item<3-> $U \leftarrow \psig{\text{SốLượng}\ =\ \mathrm{max}\text{(SốLượng)}}{T}$
+      \item<4-> $\ppi{\text{MãĐềÁn}}{U}$
+    \end{enumerate}
   \end{frame}
 \end{document}
