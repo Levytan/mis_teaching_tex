@@ -1,0 +1,54 @@
+\documentclass[11pt,aspectratio=169]{beamer}
+\usepackage{unicode-math}
+\usepackage[style=ddmmyyyy]{datetime2}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{fontspec}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz}
+\usepackage{soul}
+\usepackage{ulem}
+\usepackage{ragged2e} 
+
+\makeatletter
+\def\input@path{{theme/}}
+\def\beamer@shrinkfactorinv{1}
+\makeatother
+\usetheme[
+    twocolumntoc,
+    allserif,
+    palette=sakura
+]{Celestia}
+
+%set font
+\setmainfont{EB Garamond}[Numbers=OldStyle]
+\setsansfont{Rosario}[Numbers=OldStyle]
+\setmathfont{Asana Math}[Scale=MatchLowercase]
+\setmonofont{Consolas}[Scale=MatchLowercase]
+
+\title{Mô hình quan hệ (Relational Model)}
+\subtitle{Cơ cở dữ liệu cơ bản \textendash\ COS212}
+\institute{Khoa Hệ thống Thông tin Quản lý\\HUTECH}
+\author{Lê Thành Văn}
+\date{01.12.2025}
+%
+\AtBeginSection{
+  \frame{
+    \sectionpage%
+  }
+}
+%
+\addtobeamertemplate{block begin}{}{\justifying}%
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.5}
+\begin{document}
+    \begin{frame}
+        \titlepage%
+    \end{frame}
+    \begin{frame}
+    \tableofcontents[hideallsubsections]%
+    \end{frame}
+    \section{Giới thiệu}
+    \section{Lý thuyết}
+    \section{Chuyển đổi từ mô hình thực thể \textendash\ kết hợp}
+\end{document}
