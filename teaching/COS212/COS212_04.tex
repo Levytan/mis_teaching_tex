@@ -8,7 +8,8 @@
 \usepackage{tikz}
 \usepackage{soul}
 \usepackage{ulem}
-\usepackage{ragged2e} 
+\usepackage{ragged2e}
+\usepackage{array}
 
 \makeatletter
 \def\input@path{{theme/}}
@@ -22,9 +23,9 @@
 
 %set font
 \setmainfont{EB Garamond}[Numbers=OldStyle]
-\setsansfont{Rosario}[Numbers=OldStyle]
+\setsansfont{Noto Sans}[Numbers=OldStyle]
 \setmathfont{Asana Math}[Scale=MatchLowercase]
-\setmonofont{Consolas}[Scale=MatchLowercase]
+\setmonofont{Cascadia Code}[Scale=MatchLowercase]
 
 \title{Mô hình quan hệ (Relational Model)}
 \subtitle{Cơ cở dữ liệu cơ bản \textendash\ COS212}
@@ -48,7 +49,138 @@
     \begin{frame}
     \tableofcontents[hideallsubsections]%
     \end{frame}
-    \section{Giới thiệu}
-    \section{Lý thuyết}
+    \section{Cơ sở lý thuyết}
+    \subsection{Giới thiệu}
+    \begin{frame}{Giới thiệu}
+      Mô hình dữ liệu quan hệ (Relational Model) được phát minh bởi E.F.Codd vào năm 1970. 
+      Mô hình này cung cấp một cấu trúc dữ liệu đơn giản và đồng bộ đó là khái niệm quan hệ.
+    \end{frame}
+    \begin{frame}
+      Mô hình dựa trên một nền tảng toán học khá vững chắc đó là lý thuyết tập hợp và đại số quan hệ.
+    \end{frame}
+    \begin{frame}{Các khái niệm}
+    Các khái niệm trong mô hình quan hệ:
+    \begin{itemize}
+      \item Quan hệ (Relation).
+      \item Thuộc tính (Attribute).
+      \item Bộ (Tuple).
+      \item Thể hiện của quan hệ (Instance).
+      \item Lược đồ quan hệ (Relation Schema).
+    \end{itemize}    
+    \end{frame}
+    \subsection{Định nghĩa}
+    \begin{frame}{Quan hệ \textendash\ Relation}
+      \begin{block}{Định nghĩa}
+        \textbf{Quan hệ} là một cách tổ chức dữ liệu thành bảng hai chiều.
+        Trong đó, mỗi cột được gọi là một thuộc tính (trường), mỗi dòng được gọi là một bộ.
+      \end{block}
+      ~\\
+      Tên của quan hệ được viết in hoa toàn bộ từ và dùng dấu gạch dưới thay cho khoảng trắng.
+      \textit{Ví dụ}: SINH\_VIÊN, GIẢNG\_VIÊN, \dots
+    \end{frame}
+    \begin{frame}{Ví dụ}
+      \begin{figure}
+        \centering
+        \includegraphics[width=0.8\textwidth]{COS212/relation.pdf}
+        \caption{\textit{Quan hệ}}\label{fig:relation}
+      \end{figure}
+    \end{frame}
+    \begin{frame}{Thuộc tính \textendash\ Attribute}
+      \begin{block}{Định nghĩa}
+        \begin{itemize}
+          \item Tên các cột của quan hệ.
+          \item Mô tả ý nghĩa cho các giá trị tại cột đó.
+          \item Tất cả các dữ liệu trong cùng một cột đều có cùng kiểu dữ liệu
+        \end{itemize}
+      \end{block}
+      ~\\
+      Tên của thuộc tính được viết thường toàn bộ từ và dùng dấu gạch dưới thay cho khoảng trắng.
+      \textit{Ví dụ}: mã\_số\_sinh\_viên, họ\_tên, \dots
+    \end{frame}
+    \begin{frame}{Thuộc tính \textendash\ Attribute (tiếp)}
+      \begin{block}{Tiêu đề}
+        \textbf{Tiêu đề} là dòng đầu tiên của một quan hệ, nó chứa tên các thuộc tính của quan hệ đó.
+      \end{block}
+      \begin{block}{Bậc của quan hệ}
+        \textbf{Bậc của quan hệ} là số lượng thuộc tính của một quan hệ.
+      \end{block}
+      ~\\
+      Trong \hyperlink{fig:relation}{ví dụ trên}, quan hệ \textbf{CHI\_NHÁNH} có bậc 4, quan hệ \textbf{NHÂN\_VIÊN} có bậc 7.
+    \end{frame}
+    \begin{frame}{Miền xác định \textendash\ Domain}
+      \begin{block}{Định nghĩa}
+        Miền xác định của một thuộc tính là tập hợp tất cả các giá trị mà thuộc tính đó có thể nhận.
+        \\[1em]
+        Miền xác định của thuộc tính \textit{attr} được ký hiệu là DOM(attr).
+      \end{block}
+      ~\\
+      Trong \hyperlink{fig:relation}{ví dụ trên}, thuộc tính \textbf{giới\_tính} có thể có miền xác định là \textbf{\{Nam, Nữ, Khác\}}.
+    \end{frame}
+    \begin{frame}{Miền xác định \textendash\ Domain (tiếp)}
+      Một thuộc tính (trong một bộ) có thể không xác định được giá trị, ta gọi là \textbf{NULL} (chỗ trống).
+    \end{frame}
+    \begin{frame}{Bộ giá trị \textendash\ Tuple}
+      \begin{block}{Định nghĩa}
+        \textbf{Bộ giá trị} là một dòng của quan hệ (trừ tiêu đề) thể hiện dữ liệu cụ thể của các thuộc tính trong quan hệ.
+        Các giá trị của bộ được phân cách với nhau bằng dấu phẩy.
+        Thứ tự các thành phần trong bộ tương ứng với thứ tự trong dòng tiêu đề.
+      \end{block}
+    \end{frame}
+    \begin{frame}{Bộ giá trị \textendash\ Tuple (tiếp)}
+      Một bộ được ký hiệu là $t_v = \langle v_1, v_2, \ldots, v_k\rangle$, trong đó:
+      \begin{itemize}
+        \item $v_i$ là giá trị của thuộc tính thứ $i$ trong tiêu đề, gọi thuộc tính đó là attr$_i$.
+        \item $v_i$ thuộc miền xác định của attr$_i$, hoặc là NULL.
+      \end{itemize}
+      ~\\
+      Ngoài ra, ta còn ký hiệu $v_i = t_v[\text{attr}_i]$.
+    \end{frame}
+    \begin{frame}{Bộ giá trị \textendash\ Tuple (tiếp)}
+      Cho hai bộ của cùng một quan hệ $t_v = \langle v_1, v_2, \ldots, v_k\rangle$ và $t_u = \langle u_1, u_2, \ldots, u_k\rangle$.
+      Hai bộ trên được gọi là giống nhau nếu và chỉ nếu:
+      \begin{itemize}
+        \item $v_i$ và $u_i$ đều khác NULL, với mọi $i$.
+        \item $v_i = u_i$, với mọi $i$.
+      \end{itemize}
+    \end{frame}
+    \begin{frame}{Thể hiện của quan hệ \textendash\ Instance}
+      \begin{block}{Định nghĩa}
+        \textbf{Thể hiện của một quan hệ} là tập hợp các bộ giá trị của quan hệ tại một thời điểm nhất định.
+        Ta dùng ký hiệu r(R) để chỉ thể hiện của quan hệ R.
+      \end{block}
+      \begin{block}{Định nghĩa}
+        \textbf{Lực lượng của quan hệ} là số bộ của quan hệ đó. 
+      \end{block}
+    \end{frame}
+    \begin{frame}{Lược đồ quan hệ \textendash\ Relation Schema}
+      \begin{block}{Định nghĩa}
+        Lược đồ quan hệ được đặc trưng bởi hai thành phần:
+        \begin{itemize}
+          \item Một tên quan hệ \textbf{R}.
+          \item Một danh sách các thuộc tính \textit{attr}$_1$, \textit{attr}$_2$, \dots, \textit{attr}$_n$.
+        \end{itemize}
+        ~\\
+        Ký hiệu: R(attr$_1$, attr$_2$, \dots, attr$_n$)
+      \end{block}
+    \end{frame}
+    \begin{frame}{Tóm tắt ký hiệu}
+    \begin{table}
+      \begin{tabular}{m{0.6\textwidth}|m{0.3\textwidth}}
+        \hline
+        \centering \textbf{Mô tả} & \centering \textbf{Ký hiệu} \newlinechar 
+        \hline
+      \end{tabular}
+    \end{table}
+    \end{frame}
+    \section{Ràng buộc toàn vẹn}
+    \begin{frame}{Ràng buộc toàn vẹn}
+      \begin{block}{Định nghĩa}
+        \textbf{CSDL quan hệ} (Relational Database) là cơ sở dữ liệu sử dụng mô hình quan hệ, 
+        nghĩa là, dữ liệu được tổ chức, sắp xếp thành nhiều quan hệ (bảng hai chiều).
+      \end{block}
+      \begin{block}{Định nghĩa}
+        \textbf{Ràng buộc toàn vẹn} là những quy tắc, điều kiện cần được thỏa mãn cho \textbf{mọi thể hiện} của CSDL quan hệ.
+      \end{block}
+    \end{frame}
     \section{Chuyển đổi từ mô hình thực thể \textendash\ kết hợp}
 \end{document}
